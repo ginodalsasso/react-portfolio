@@ -6,7 +6,7 @@ import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
     const computer = useGLTF("./desktop_pc/scene.gltf");
-    
+
     return (
         <mesh>
             <hemisphereLight intensity={0.15} groundColor="black" />
@@ -18,7 +18,7 @@ const Computers = ({ isMobile }) => {
                 castShadow // Active les ombres
                 shadow-mapSize={1024}
             />
-            <ambientLight intensity={0.5} />
+            <ambientLight intensity={0.7} />
 
             <pointLight intensity={1} />
             {/* Ajoute l'ordinateur à la scène */}
@@ -39,7 +39,7 @@ const ComputersCanvas = () => {
         const mediaQuery = window.matchMedia("(max-width: 500px)");
         // Met à jour l'état isMobile en fonction de la correspondance du media query
         setIsMobile(mediaQuery.matches);
-
+        // Fonction pour gérer le changement de media query
         const handleMediaQueryChange = (event) => {
             setIsMobile(event.matches);
         };
