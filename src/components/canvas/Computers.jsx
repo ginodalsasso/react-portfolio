@@ -1,45 +1,59 @@
-import React, { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useEffect, useState, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-// import { Bloom, SSAO, DepthOfField } from "@react-three/postprocessing";
-
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import * as THREE from 'three'; 
 
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
-    const computer = useGLTF("./commodore_64/scene.gltf");
+    const { scene, materials } = useGLTF("./abstract_shape/scene.gltf");
+    const objectRef = useRef();
+
+    // Ajuster les propriétés des matériaux
+    Object.values(materials).forEach((material) => {
+        material.metalness = 1;
+        // material.emissive = new THREE.Color("#000000");
+        // material.emissiveIntensity = 0.05;
+    });
+
+    // Calculer le centre du modèle
+    useEffect(() => {
+        if (objectRef.current) {
+            const box = new THREE.Box3().setFromObject(objectRef.current);
+            const center = box.getCenter(new THREE.Vector3());
+            objectRef.current.position.sub(center); // Centrer l'objet autour de son centre de gravité
+        }
+    }, [scene]);
 
     return (
-        <mesh>
+        <mesh ref={objectRef}>
             {/* Ajoute les lumières à la scène */}
             <hemisphereLight intensity={0.4} groundColor="black" />
-            <directionalLight // Ajoute une lumière directionnelle
-                color="#f5d69d"
+            <directionalLight
+                // color="#f5d69d"
                 position={[5, 10, 5]}
-                intensity={0.8}
+                intensity={8}
                 castShadow
             />
-            <spotLight // Ajoute une lumière ponctuelle
-                position={[0, 5, 5]} 
-                angle={0.8} // Angle plus large
-                penumbra={1} // 
-                intensity={100} // Intensité élevée pour un éclairage fort
-                castShadow
+            <spotLight
+                position={[0, 5, 5]}
+                angle={1}
+                intensity={10}
+                // castShadow
                 shadow-mapSize={1024}
             />
             {/* <ambientLight intensity={0.4} /> */}
 
-            <pointLight 
-                intensity={6} 
-                position={[1, -0.2, 0]}
-            />
+            <pointLight intensity={6} position={[1, -0.2, 0]} />
 
-            {/* Ajoute l'ordinateur à la scène */}
+            {/* Ajouter l'objet à la scène */}
             <primitive
-                object={computer.scene} // Utilise le modèle 3D de l'ordinateur
-                scale={isMobile ? 0.6 : 0.8} // Ajuste la taille de l'ordinateur
-                position={isMobile ? [0, -1, -2.2] : [0, -2.5, -1.5]} // Positionne l'ordinateur
-                rotation={[0, 0, 0]} // Ajuste la rotation de l'ordinateur
+                object={scene}
+                scale={isMobile ? 1.5 : 2}
+                // position={[0, 0, 0]} 
+                position={isMobile ? [0, -10, 20.2] : [0, 0, 0]} 
+                rotation={[0, 0, 0]}
             />
         </mesh>
     );
@@ -47,16 +61,16 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
     const [isMobile, setIsMobile] = useState(false);
-    // Détermine si l'utilisateur est sur un appareil mobile
+    const controlsRef = useRef();
+
+    // Vérifie si l'utilisateur est sur mobile
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 500px)");
-        // Met à jour l'état isMobile en fonction de la correspondance du media query
-        setIsMobile(mediaQuery.matches);
-        // Fonction pour gérer le changement de media query
+        setIsMobile(mediaQuery.matches); 
+        // Met à jour l'état en fonction de la correspondance du media query
         const handleMediaQueryChange = (event) => {
             setIsMobile(event.matches);
         };
-        // Ajoute un écouteur d'événements pour le changement de media query
         mediaQuery.addEventListener("change", handleMediaQueryChange);
 
         return () => {
@@ -64,30 +78,33 @@ const ComputersCanvas = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (controlsRef.current) {
+            controlsRef.current.target.set(0, 0, 0); // Centre la caméra sur le centre de l'objet
+            controlsRef.current.update(); // Mettre à jour les contrôles
+        }
+    }, []);
+
     return (
-        // Crée un canvas pour afficher l'ordinateur
         <Canvas
-            frameloop="demand" // Optimise les performances
-            shadows // Active les ombres
-            dpr={[1, 2]} // Ajuste le taux de rafraîchissement
-            camera={{ position: [20, 3, 5], fov: 25 }} // Positionne la caméra
-            gl={{ preserveDrawingBuffer: true }} // Préserve le tampon de dessin
+            frameloop="demand"
+            shadows
+            dpr={[1, 2]}
+            camera={{ position: [20, 3, 5], fov: 25 }}
+            gl={{ preserveDrawingBuffer: true }}
         >
-            {/* Ajoute les contrôles de l'orbite */}
             <Suspense fallback={<CanvasLoader />}>
                 <OrbitControls
+                    ref={controlsRef}
                     enableZoom={false}
-                    maxPolarAngle={Math.PI / 2} 
-                    minPolarAngle={Math.PI / 2.4}
-                    // pour la rotation verticale et horizontale
-                    // maxPolarAngle={Math.PI}
-                    // minPolarAngle={0} 
-                    
+                    maxPolarAngle={Math.PI}
+                    minPolarAngle={0}
                 />
                 <Computers isMobile={isMobile} />
-
+                <EffectComposer>
+                    <Bloom luminanceThreshold={1} luminanceSmoothing={0.9} intensity={1.5} />
+                </EffectComposer>
             </Suspense>
-
             <Preload all />
         </Canvas>
     );
