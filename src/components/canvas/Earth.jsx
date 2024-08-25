@@ -5,17 +5,33 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const Earth = () => {
-    const earth = useGLTF("./akira_bike/scene.gltf"); // Charge le modèle de la Terre
+    const earth = useGLTF("./abstract_model/scene.gltf"); // Charge le modèle de la Terre
 
     return (
-        // Crée le modèle de la Terre
-        <primitive
+        <mesh>
+        {/* // Crée le modèle de la Terre */}
+
+            <directionalLight
+                color="#011347"
+                position={[5, 10, 5]}
+                intensity={4}
+                castShadow
+            />
+            <spotLight
+                position={[0, 5, 5]}
+                angle={1}
+                intensity={3}
+                shadow-mapSize={1024}
+            />
+            <pointLight intensity={6} position={[1, -0.2, 0]} />
         
+        {/* Ajoute l'objet à la scène */}
+        <primitive
             object={earth.scene}
-            scale={2.5}
-            position-y={5}
-            rotation-y={0}
+            scale={1.8}
         />
+
+        </mesh>
     );
 };
 
@@ -30,8 +46,8 @@ const EarthCanvas = () => {
             camera={{
                 fov: 45,
                 near: 0.1,
-                far: 200,
-                position: [-4, 3, 6],
+                far: 100,
+                position: [5, 2, 7],
             }}
         >
             <Suspense fallback={<CanvasLoader />}>

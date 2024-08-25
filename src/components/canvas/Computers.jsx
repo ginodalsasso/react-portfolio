@@ -7,15 +7,15 @@ import * as THREE from 'three';
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
-    const { scene, materials } = useGLTF("./abstract_shape/scene.gltf");
+    const { scene } = useGLTF("./abstract_shape/scene.gltf");
     const objectRef = useRef();
 
     // Ajuster les propriétés des matériaux
-    Object.values(materials).forEach((material) => {
-        material.metalness = 1;
-        // material.emissive = new THREE.Color("#000000");
-        // material.emissiveIntensity = 0.05;
-    });
+    // Object.values(materials).forEach((material) => {
+    //     material.metalness = 1;
+    //     // material.emissive = new THREE.Color("#000000");
+    //     // material.emissiveIntensity = 0.05;
+    // });
 
     // Calculer le centre du modèle
     useEffect(() => {
@@ -29,18 +29,17 @@ const Computers = ({ isMobile }) => {
     return (
         <mesh ref={objectRef}>
             {/* Ajoute les lumières à la scène */}
-            <hemisphereLight intensity={0.4} groundColor="black" />
+            {/* <hemisphereLight intensity={0.4} groundColor="black" /> */}
             <directionalLight
                 // color="#f5d69d"
                 position={[5, 10, 5]}
                 intensity={8}
-                castShadow
+                // castShadow
             />
             <spotLight
                 position={[0, 5, 5]}
                 angle={1}
-                intensity={10}
-                // castShadow
+                intensity={3}
                 shadow-mapSize={1024}
             />
             {/* <ambientLight intensity={0.4} /> */}
@@ -51,8 +50,7 @@ const Computers = ({ isMobile }) => {
             <primitive
                 object={scene}
                 scale={isMobile ? 1.5 : 2}
-                // position={[0, 0, 0]} 
-                position={isMobile ? [0, -10, 20.2] : [0, 0, 0]} 
+                position={[0, 0, 0]} 
                 rotation={[0, 0, 0]}
             />
         </mesh>
@@ -87,7 +85,7 @@ const ComputersCanvas = () => {
 
     return (
         <Canvas
-            frameloop="demand"
+            frameloop="always"
             shadows
             dpr={[1, 2]}
             camera={{ position: [20, 3, 5], fov: 25 }}
@@ -95,6 +93,7 @@ const ComputersCanvas = () => {
         >
             <Suspense fallback={<CanvasLoader />}>
                 <OrbitControls
+                    autoRotate
                     ref={controlsRef}
                     enableZoom={false}
                     maxPolarAngle={Math.PI}

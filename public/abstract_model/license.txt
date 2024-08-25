@@ -1,0 +1,11 @@
+Model Information:
+* title:	abstract model
+* source:	https://sketchfab.com/3d-models/abstract-model-7b48e8bba03f48d69397142d83bdd4c7
+* author:	miaumio (https://sketchfab.com/miaumio)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "abstract model" (https://sketchfab.com/3d-models/abstract-model-7b48e8bba03f48d69397142d83bdd4c7) by miaumio (https://sketchfab.com/miaumio) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
