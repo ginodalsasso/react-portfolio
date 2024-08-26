@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
@@ -121,16 +120,9 @@ const Contact = () => {
                         type="submit"
                         className="bg-tertiary  py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl"
                     >
-                        {loading ? "Sending..." : "Send"}{" "}
-                        {/* Affiche le texte en fonction de l'état de chargement */}
+                        {loading ? "Sending..." : "Send"}{" "}{/* Affiche le texte en fonction de l'état de chargement */}
                     </button>
                 </form>
-            </motion.div>
-            <motion.div
-                variants={slideIn("right", "tween", 0.2, 1)} // Ajoute une animation de défilement
-                className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
-            >
-                <EarthCanvas />
             </motion.div>
         </div>
     );

@@ -7,10 +7,13 @@ import * as random from "maath/random/dist/maath-random.esm";
 const Stars = (props) => {
     // déclare une variable de référence pour les étoiles
     const ref = useRef();
-    // déclare une variable d'état pour les étoiles
-    const [sphere] = useState(() =>
-        random.inSphere(new Float32Array(5000), { radius: 1.2 }) // Génère des étoiles dans une sphère
+    // Utilisation du hook useState pour initialiser une seule fois la position des étoiles dans une sphère
+    const [sphere] = useState(() => 
+        // La fonction random.inSphere génère un ensemble de points aléatoires positionnés à l'intérieur d'une sphère
+        // new Float32Array(3000) crée un tableau de 3000 éléments en mémoire pour stocker les coordonnées des points (chaque point a 3 coordonnées : x, y, z)
+        random.inSphere(new Float32Array(3000), { radius: 1.3 }) // Génère les positions des étoiles dans une sphère de rayon 1.2
     );
+
     // déclare une variable d'état pour l'animation des étoiles
     useFrame((state, delta) => {
         ref.current.rotation.x -= delta / 10;
@@ -42,7 +45,6 @@ const Stars = (props) => {
 // Crée un canvas pour les étoiles
 const StarsCanvas = () => {
     return (
-        // <div className="w-full h-auto absolute inset-0 z-[-1]">
         <div className="fixed inset-0 w-full h-full z-[-1]">
 
             <Canvas camera={{ position: [0, 0, 1] }}>

@@ -2,39 +2,36 @@ import React, { Suspense, useEffect, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import * as THREE from 'three'; 
+import * as THREE from "three";
 
 import CanvasLoader from "../Loader";
 
-const Computers = ({ isMobile }) => {
+const AbstractShape = ({ isMobile, controlsRef }) => {
     const { scene } = useGLTF("./abstract_shape/scene.gltf");
     const objectRef = useRef();
 
-    // Ajuster les propriétés des matériaux
-    // Object.values(materials).forEach((material) => {
-    //     material.metalness = 1;
-    //     // material.emissive = new THREE.Color("#000000");
-    //     // material.emissiveIntensity = 0.05;
-    // });
-
-    // Calculer le centre du modèle
+    // Calculer et centrer l'objet dans la scène
     useEffect(() => {
         if (objectRef.current) {
+            // Calculer le centre du modèle
             const box = new THREE.Box3().setFromObject(objectRef.current);
             const center = box.getCenter(new THREE.Vector3());
             objectRef.current.position.sub(center); // Centrer l'objet autour de son centre de gravité
+
+            // Si controlsRef est défini, centrez la caméra sur l'objet
+            if (controlsRef.current) {
+                controlsRef.current.target.copy(center);
+                controlsRef.current.update(); // Mettre à jour les contrôles pour appliquer immédiatement la nouvelle cible
+            }
         }
-    }, [scene]);
+    }, [scene, controlsRef]);
 
     return (
         <mesh ref={objectRef}>
-            {/* Ajoute les lumières à la scène */}
-            {/* <hemisphereLight intensity={0.4} groundColor="black" /> */}
             <directionalLight
                 // color="#f5d69d"
                 position={[5, 10, 5]}
                 intensity={8}
-                // castShadow
             />
             <spotLight
                 position={[0, 5, 5]}
@@ -42,7 +39,6 @@ const Computers = ({ isMobile }) => {
                 intensity={3}
                 shadow-mapSize={1024}
             />
-            {/* <ambientLight intensity={0.4} /> */}
 
             <pointLight intensity={6} position={[1, -0.2, 0]} />
 
@@ -50,38 +46,51 @@ const Computers = ({ isMobile }) => {
             <primitive
                 object={scene}
                 scale={isMobile ? 1.5 : 2}
-                position={[0, 0, 0]} 
+                position={[0, 0, 0]}
                 rotation={[0, 0, 0]}
             />
         </mesh>
     );
 };
 
-const ComputersCanvas = () => {
+const AbstractShapeCanvas = () => {
+    // Déclare un état `isMobile` pour déterminer si l'utilisateur est sur un appareil mobile
     const [isMobile, setIsMobile] = useState(false);
+
+    // Référence pour les contrôles de la caméra (par exemple, OrbitControls)
     const controlsRef = useRef();
 
-    // Vérifie si l'utilisateur est sur mobile
+    // Utilise `useEffect` pour détecter si l'utilisateur est sur un appareil mobile
     useEffect(() => {
+        // Cela vérifie si la largeur de l'écran est de 500px ou moins
         const mediaQuery = window.matchMedia("(max-width: 500px)");
-        setIsMobile(mediaQuery.matches); 
-        // Met à jour l'état en fonction de la correspondance du media query
+
+        // Définit l'état `isMobile` en fonction de la correspondance actuelle du media query
+        setIsMobile(mediaQuery.matches);
+
+        // Définit une fonction pour mettre à jour `isMobile` chaque fois que le media query change
         const handleMediaQueryChange = (event) => {
             setIsMobile(event.matches);
         };
+
         mediaQuery.addEventListener("change", handleMediaQueryChange);
 
+        // Nettoie l'écouteur d'événements lorsque le composant est démonté
         return () => {
             mediaQuery.removeEventListener("change", handleMediaQueryChange);
         };
-    }, []);
+    }, []); // Le tableau de dépendances vide [] signifie que cet effet s'exécutera uniquement lors du premier montage du composant
 
     useEffect(() => {
+        // Vérifie si la référence des contrôles (controlsRef) est définie
         if (controlsRef.current) {
-            controlsRef.current.target.set(0, 0, 0); // Centre la caméra sur le centre de l'objet
-            controlsRef.current.update(); // Mettre à jour les contrôles
+            // Cela centre la vue de la caméra sur le centre de l'objet dans la scène 3D
+            controlsRef.current.target.set(0, 0, 0);
+
+            // Met à jour les contrôles pour appliquer immédiatement la nouvelle cible
+            controlsRef.current.update();
         }
-    }, []);
+    }, []); // Le tableau vide [] signifie que cet effet ne s'exécutera qu'une seule fois après le premier rendu du composant
 
     return (
         <Canvas
@@ -99,9 +108,14 @@ const ComputersCanvas = () => {
                     maxPolarAngle={Math.PI}
                     minPolarAngle={0}
                 />
-                <Computers isMobile={isMobile} />
+                {/* Passez controlsRef à AbstractShape pour centrer la caméra sur l'objet */}
+                <AbstractShape isMobile={isMobile} controlsRef={controlsRef} />
                 <EffectComposer>
-                    <Bloom luminanceThreshold={1} luminanceSmoothing={0.9} intensity={1.5} />
+                    <Bloom
+                        luminanceThreshold={1}
+                        luminanceSmoothing={0.9}
+                        intensity={1.5}
+                    />
                 </EffectComposer>
             </Suspense>
             <Preload all />
@@ -109,4 +123,4 @@ const ComputersCanvas = () => {
     );
 };
 
-export default ComputersCanvas;
+export default AbstractShapeCanvas;
