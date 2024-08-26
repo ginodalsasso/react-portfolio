@@ -10,13 +10,19 @@ const AbstractShape = ({ isMobile, controlsRef }) => {
     const { scene } = useGLTF("./abstract_shape/scene.gltf");
     const objectRef = useRef();
 
-    // Calculer et centrer l'objet dans la scène
+    // Calculer et centrer l'objet dans la scène tout en conservant la position donnée
     useEffect(() => {
         if (objectRef.current) {
+            // Stocker la position actuelle
+            const currentPosition = objectRef.current.position.clone();
+
             // Calculer le centre du modèle
             const box = new THREE.Box3().setFromObject(objectRef.current);
             const center = box.getCenter(new THREE.Vector3());
             objectRef.current.position.sub(center); // Centrer l'objet autour de son centre de gravité
+
+            // Appliquer la position donnée (celle définie dans les props)
+            objectRef.current.position.add(currentPosition);
 
             // Si controlsRef est défini, centrez la caméra sur l'objet
             if (controlsRef.current) {
@@ -46,7 +52,7 @@ const AbstractShape = ({ isMobile, controlsRef }) => {
             <primitive
                 object={scene}
                 scale={isMobile ? 1.5 : 2}
-                position={[0, 0, 0]}
+                position={[0, 0, 0]} // Position spécifiée
                 rotation={[0, 0, 0]}
             />
         </mesh>
