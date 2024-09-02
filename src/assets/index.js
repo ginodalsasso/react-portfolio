@@ -26,9 +26,11 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import tuttopasta from "./tuttopasta.png";
+import session from "./session.png";
+import forum from "./forum.png";
+import iller from "./iller.png";
+import wikifilm from "./wikifilm.png";
 
 export {
   logo,
@@ -56,7 +58,9 @@ export {
   shopify,
   starbucks,
   tesla,
-  carrent,
-  jobit,
-  tripguide,
+  tuttopasta,
+  session,
+  forum,
+  iller,
+  wikifilm,
 };

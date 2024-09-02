@@ -9,7 +9,7 @@ import { textVariant } from "../utils/motion";
 
 const ExperienceCard = ({ experience }) => (
     <VerticalTimelineElement
-        contentStyle={{ background: '#050712', color: '#fff', boxShadow: '0 0 40px rgba(252, 233, 225, 0.08)' }}
+        contentStyle={{ background: '#050712', color: '#fff', borderRadius: '15px', boxShadow: '0 0 40px rgba(252, 233, 225, 0.08)' }}
         contentArrowStyle={{ borderRight: '7px solid  #232631' }}
         date={experience.date}
         iconStyle={{ background: experience.iconBg }}

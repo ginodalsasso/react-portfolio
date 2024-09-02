@@ -1,7 +1,6 @@
 import {
     mobile,
     backend,
-    creator,
     web,
     javascript,
     typescript,
@@ -15,13 +14,14 @@ import {
     git,
     figma,
     docker,
-    meta,
     starbucks,
     tesla,
     shopify,
-    carrent,
-    jobit,
-    tripguide,
+    tuttopasta,
+    session,
+    forum,
+    wikifilm,
+    iller,
     threejs,
 } from "../assets";
 
@@ -35,6 +35,10 @@ export const navLinks = [
         title: "Work",
     },
     {
+        id: "projects",
+        title: "Projects",
+    },
+    {
         id: "contact",
         title: "Contact",
     },
@@ -46,17 +50,13 @@ const services = [
         icon: web,
     },
     {
-        title: "React Native Developer",
+        title: "Frontend Developer",
         icon: mobile,
     },
     {
         title: "Backend Developer",
         icon: backend,
-    },
-    {
-        title: "Content Creator",
-        icon: creator,
-    },
+    }
 ];
 
 const technologies = [
@@ -116,57 +116,47 @@ const technologies = [
 
 const experiences = [
     {
-        title: "React.js Developer",
-        company_name: "Starbucks",
+        title: "Software Development Intern",
+        company_name: "Iller Distribution",
         icon: starbucks,
         iconBg: "#383E56",
-        date: "March 2020 - April 2021",
+        date: "June 2024 - July 2024",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Designing and developing a web application for order management tailored for professional restaurateurs.",
+            "Managing both front-end and back-end development, ensuring seamless functionality and user experience.",
+            "Collaborating closely with a partner to ensure cohesive development across all aspects of the application.",
+            "Working in close partnership with the internship supervisor to integrate the application with the existing database.",
+            "Implementing best practices for code quality, ensuring the application is maintainable and scalable."
         ],
     },
     {
-        title: "React Native Developer",
-        company_name: "Tesla",
+        title: "Carpentry Experience and Skill Development",
+        company_name: "Multiple Companies",
         icon: tesla,
         iconBg: "#E6DEDD",
-        date: "Jan 2021 - Feb 2022",
+        date: "Sept 2008 - Feb 2024",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Gained 15 years of experience in carpentry, honing precision and attention to detail.",
+            "Developed strong adaptability skills through diverse projects and challenges.",
+            "Enhanced teamwork abilities by collaborating closely with other craftsmen and professionals.",
+            "Cultivated patience and perseverance, essential traits for delivering high-quality work.",
+            "Gained international experience by practicing carpentry in Australia for nearly one year and half, further broadening my skills and cultural understanding."
         ],
     },
     {
-        title: "Web Developer",
-        company_name: "Shopify",
+        title: "International Experience",
+        company_name: "Multiple Companies",
         icon: shopify,
         iconBg: "#383E56",
-        date: "Jan 2022 - Jan 2023",
+        date: "Sept 2018 - Jan 2021",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Spent 2 years in Australia, gaining diverse work experience in farms, factories, and over a year in carpentry.",
+            "Developed adaptability and resilience by working in varied environments and challenging roles.",
+            "Enhanced cultural awareness and teamwork through international collaboration and exposure to different work cultures.",
+            "Embarked on a transformative motorcycle journey across Cambodia, Vietnam, and Indonesia, fostering independence and problem-solving skills.",
+            "Broadened my global perspective and appreciation for diversity through rich cultural exchanges and unique travel experiences."
         ],
-    },
-    {
-        title: "Full stack Developer",
-        company_name: "Meta",
-        icon: meta,
-        iconBg: "#E6DEDD",
-        date: "Jan 2023 - Present",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
+    }
 ];
 
 const testimonials = [
@@ -198,67 +188,117 @@ const testimonials = [
 
 const projects = [
     {
-        name: "Car Rent",
+        name: "Studio TuttoPasta ",
         description:
-            "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+            "A graphic designer and web designer needed a website to showcase services and creations, featuring appointment booking based on availability, a quote generation and management system, and an admin panel for content management.",
         tags: [
             {
-                name: "react",
+                name: "symfony",
                 color: "blue-text-gradient",
             },
             {
-                name: "mongodb",
+                name: "mysql",
                 color: "green-text-gradient",
             },
             {
-                name: "tailwind",
+                name: "gsap",
                 color: "pink-text-gradient",
             },
+            {
+                name: "jquery",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "chartjs",
+                color: "green-text-gradient",
+            },
         ],
-        image: carrent,
-        source_code_link: "https://github.com/",
+        image: tuttopasta,
+        source_code_link: "https://github.com/ginodalsasso/projet-tuttoPasta",
     },
     {
-        name: "Job IT",
+        name: "Professional Session management",
         description:
-            "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+            "Web application designed for training center administrators to manage training sessions, modules, categories, and student registrations efficiently.",
         tags: [
             {
-                name: "react",
+                name: "symfony",
                 color: "blue-text-gradient",
             },
             {
-                name: "restapi",
+                name: "javascript",
                 color: "green-text-gradient",
             },
             {
-                name: "scss",
+                name: "mysql",
                 color: "pink-text-gradient",
             },
         ],
-        image: jobit,
-        source_code_link: "https://github.com/",
+        image: session,
+        source_code_link: "https://github.com/ginodalsasso/projet-session",
     },
     {
-        name: "Trip Guide",
+        name: "Forum Zino",
         description:
-            "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+            "The main objective of this project is to develop an online forum platform that meets the specifications outlined in the client's requirements. The forum should facilitate flexible and intuitive communication among users",
         tags: [
             {
-                name: "nextjs",
+                name: "php",
                 color: "blue-text-gradient",
             },
             {
-                name: "supabase",
+                name: "mysql",
                 color: "green-text-gradient",
             },
             {
-                name: "css",
+                name: "javascript",
                 color: "pink-text-gradient",
             },
         ],
-        image: tripguide,
-        source_code_link: "https://github.com/",
+        image: forum,
+        source_code_link: "https://github.com/ginodalsasso/projet-forum",
+    },
+    {
+        name: "Web Application for Restaurateurs",
+        description:
+            "Designed and developed a web application for restaurateurs, handling full-stack development, collaborating with a supervisor for database integration and helping to ensure code quality.",
+        tags: [
+            {
+                name: "php",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "mysql",
+                color: "green-text-gradient",
+            },
+            {
+                name: "jquery",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: iller,
+        source_code_link: "https://github.com/ginodalsasso/",
+    },
+    {
+        name: "Film Wiki Project",
+        description:
+            "This project involves the design of a website with a database for a film wiki, as well as the creation of a user interface to manage it.",
+        tags: [
+            {
+                name: "php",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "mysql",
+                color: "green-text-gradient",
+            },
+            {
+                name: "javascript",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: wikifilm,
+        source_code_link: "https://github.com/ginodalsasso/projet-cinema",
     },
 ];
 
