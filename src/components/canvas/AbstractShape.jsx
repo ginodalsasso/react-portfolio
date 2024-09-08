@@ -7,7 +7,7 @@ import * as THREE from "three";
 import CanvasLoader from "../Loader";
 
 const AbstractShape = ({ isMobile, controlsRef }) => {
-    const { scene } = useGLTF("./abstract_shape/scene.gltf");
+    const { scene } = useGLTF("./paradox_abstract/scene.gltf");
     const objectRef = useRef();
 
     // Calculer et centrer l'objet dans la scène tout en conservant la position donnée

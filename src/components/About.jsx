@@ -42,7 +42,7 @@ const About = () => {
             </motion.div>
             <motion.p 
                 variants={fadeIn("", "", 0.1, 1)} 
-                className="mt-4 text-secondary text-[17px] max-w-3x1 leading-[30px]"
+                className="mt-4 text-secondary text-[20px] max-w-3x1 leading-[30px]"
             >
                 Passionate about crafting digital solutions. Currently
                 undergoing training to become a proficient developer, I'm

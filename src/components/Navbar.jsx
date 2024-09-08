@@ -30,7 +30,7 @@ const Navbar = () => {
                         src={logo} alt="logo" 
                         className="w-9 h-9 object-contain" 
                     /> */}
-                    <p className='text-white text-[18px] font-bold cursor-pointer flex'>
+                    <p className='text-white text-[20px] font-bold cursor-pointer flex'>
                         Gino &nbsp;
                         <span> | Junior Developper</span>
                     </p>  
@@ -42,7 +42,7 @@ const Navbar = () => {
                             key={link.id}
                             // Ajoute la classe active si le lien est actif
                             className={`${active === link.title ? "text-white" : "text-secondary"} 
-                                hover:text-white text-[18px] font-medium cursor-pointer`}
+                                hover:text-white text-[20px] font-medium cursor-pointer`}
                                 onClick={() => {
                                     setActive(link.title);
                                 }}
@@ -66,7 +66,7 @@ const Navbar = () => {
                                     key={link.id}
                                     // Ajoute la classe active si le lien est actif
                                     className={`${active === link.title ? "text-white" : "text-secondary"} 
-                                        font-rubik font-medium cursor-pointer text-[16px]`}
+                                        font-rubik font-medium cursor-pointer text-[18px]`}
                                         onClick={() => {
                                             setToggle(!toggle); // Ferme le menu mobile
                                             setActive(link.title); // Définit le lien actif
