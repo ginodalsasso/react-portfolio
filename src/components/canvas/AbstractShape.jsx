@@ -1,8 +1,7 @@
 import React, { Suspense, useEffect, useState, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import * as THREE from "three";
 
 import CanvasLoader from "../Loader";
 
@@ -10,41 +9,19 @@ const AbstractShape = ({ isMobile, controlsRef }) => {
     const { scene } = useGLTF("./paradox_abstract/scene.gltf");
     const objectRef = useRef();
 
-    // Calculer et centrer l'objet dans la scène tout en conservant la position donnée
-    // useEffect(() => {
-    //     if (objectRef.current) {
-    //         // Stocker la position actuelle
-    //         const currentPosition = objectRef.current.position.clone();
-
-    //         // Calculer le centre du modèle
-    //         const box = new THREE.Box3().setFromObject(objectRef.current);
-    //         const center = box.getCenter(new THREE.Vector3());
-    //         objectRef.current.position.sub(center); // Centrer l'objet autour de son centre de gravité
-
-    //         // Appliquer la position donnée (celle définie dans les props)
-    //         objectRef.current.position.add(currentPosition);
-
-    //         // Si controlsRef est défini, centrez la caméra sur l'objet
-    //         if (controlsRef.current) {
-    //             controlsRef.current.target.copy(center);
-    //             controlsRef.current.update(); // Mettre à jour les contrôles pour appliquer immédiatement la nouvelle cible
-    //         }
-    //     }
-    // }, [scene, controlsRef]);
-
     return (
         <mesh ref={objectRef}>
             <directionalLight
                 // color="#f5d69d"
                 position={[8, 10, 5]}
-                intensity={4}
+                intensity={8}
             />
             <pointLight intensity={3} position={[1, 1, 0]} />
             
             {/* Ajouter l'objet à la scène */}
             <primitive
                 object={scene}
-                scale={isMobile ? 1.1 : 2}
+                scale={isMobile ? 1.1 : 2.5}
                 position={[0, -0.2, 0]} // Position spécifiée
                 // rotation={[0, 0, 0]}
             />

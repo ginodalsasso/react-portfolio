@@ -6,12 +6,13 @@ import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { Tilt } from "react-tilt";
-// import { div } from "three/examples/jsm/nodes/Nodes.js";
 
 // Carte des services
 const ServiceCard = ({ index, title, icon }) => {
     return (
+        // Ajoute un effet de basculement à la carte
         <Tilt className="xs:w-[250px] w-full">
+            {/* // Ajoute un effet de fondu à la carte */}
             <motion.div
                 variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}   
                 className="w-full  shadow-card"
@@ -36,7 +37,6 @@ const About = () => {
     return (
         <>
         {/* Section présentation */}
-
             <motion.div variants={textVariant()}>
                 <p className={styles.sectionSubText}>Introduction</p>
                 <h2 className={styles.sectionHeadText}>Overview.</h2>

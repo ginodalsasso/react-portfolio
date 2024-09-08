@@ -14,9 +14,6 @@ import {
     git,
     figma,
     docker,
-    starbucks,
-    tesla,
-    shopify,
     tuttopasta,
     session,
     forum,
@@ -118,7 +115,6 @@ const experiences = [
     {
         title: "Software Development Intern",
         company_name: "Iller Distribution",
-        icon: starbucks,
         iconBg: "#383E56",
         date: "June 2024 - July 2024",
         points: [
@@ -132,7 +128,6 @@ const experiences = [
     {
         title: "Carpentry Experience and Skill Development",
         company_name: "Multiple Companies",
-        icon: tesla,
         iconBg: "#E6DEDD",
         date: "Sept 2008 - Feb 2024",
         points: [
@@ -146,7 +141,6 @@ const experiences = [
     {
         title: "International Experience",
         company_name: "Multiple Companies",
-        icon: shopify,
         iconBg: "#383E56",
         date: "Sept 2018 - Jan 2021",
         points: [
@@ -159,32 +153,6 @@ const experiences = [
     }
 ];
 
-const testimonials = [
-    {
-        testimonial:
-            "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-        name: "Sara Lee",
-        designation: "CFO",
-        company: "Acme Co",
-        image: "https://randomuser.me/api/portraits/women/4.jpg",
-    },
-    {
-        testimonial:
-            "I've never met a web developer who truly cares about their clients' success like Rick does.",
-        name: "Chris Brown",
-        designation: "COO",
-        company: "DEF Corp",
-        image: "https://randomuser.me/api/portraits/men/5.jpg",
-    },
-    {
-        testimonial:
-            "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-        name: "Lisa Wang",
-        designation: "CTO",
-        company: "456 Enterprises",
-        image: "https://randomuser.me/api/portraits/women/6.jpg",
-    },
-];
 
 const projects = [
     {
@@ -302,4 +270,4 @@ const projects = [
     },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, experiences, projects };

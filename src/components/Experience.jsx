@@ -27,8 +27,9 @@ const ExperienceCard = ({ experience }) => {
                 flexDirection: 'column',
             }}
             iconStyle={{ 
-                borderRadius: '0', 
                 background: '#0a0a0a',
+
+                // display: 'none'
             }}
 
             date={experience.date}

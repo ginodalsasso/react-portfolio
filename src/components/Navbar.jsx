@@ -12,9 +12,9 @@ const Navbar = () => {
         <nav
             className={`
                 ${styles.paddingX} w-full flex
-                items-center py-5 fixed top-0 z-20 
+                items-center fixed top-0 z-20 
                 bg-primary
-                border-b border-secondary
+                border border-secondary
             `}
         >
             <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -31,7 +31,7 @@ const Navbar = () => {
                         src={logo} alt="logo" 
                         className="w-9 h-9 object-contain" 
                     /> */}
-                    <p className='text-white text-[20px] font-bold cursor-pointer flex'>
+                    <p className='text-white text-[20px] py-4 font-bold cursor-pointer flex'>
                         Gino &nbsp;
                         <span> | Junior Developper</span>
                     </p>  
@@ -43,7 +43,7 @@ const Navbar = () => {
                             key={link.id}
                             // Ajoute la classe active si le lien est actif
                             className={`${active === link.title ? "text-white" : "text-secondary"} 
-                                hover:text-white text-[20px] font-medium cursor-pointer`}
+                                hover:text-white hover:border-x py-4 px-3 text-[20px] font-medium cursor-pointer`}
                                 onClick={() => {
                                     setActive(link.title);
                                 }}
@@ -67,7 +67,7 @@ const Navbar = () => {
                                     key={link.id}
                                     // Ajoute la classe active si le lien est actif
                                     className={`${active === link.title ? "text-white" : "text-secondary"} 
-                                        font-rubik font-medium cursor-pointer text-[18px]`}
+                                        font-medium cursor-pointer text-[18px]`}
                                         onClick={() => {
                                             setToggle(!toggle); // Ferme le menu mobile
                                             setActive(link.title); // Définit le lien actif
