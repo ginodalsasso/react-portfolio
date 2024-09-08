@@ -1,56 +1,40 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-    Decal,
-    Float,
-    OrbitControls,
-    Preload,
-    useTexture,
-} from "@react-three/drei";
+import { OrbitControls, Preload, useTexture, Decal } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
-const Ball = (props) => {
-    const [decal] = useTexture([props.imgUrl]);
+const Cube = ({ imgUrl }) => {
+    const texture = useTexture(imgUrl); // Charge la texture de l'image
+    const scale = [0.8, 0.8, 0.8]; // Définit l'échelle des décalcomanies
 
     return (
-        // Crée une sphère flottante
-        <Float speed={0.5} rotationIntensity={0.5} floatIntensity={2}>
-            <ambientLight intensity={0.3} />
-            <directionalLight position={[0, 0, 0.05]} />
-            <mesh castShadow receiveShadow scale={3}>
-                <boxGeometry args={[1, 1, 1]} />
-                <meshStandardMaterial
-                    color={"#c4c4c4"}
-                    polygonOffset 
-                    polygonOffsetFactor={-5}
-                    flatShading
-                />
-                <Decal
-                    position={[0, 0, 0.5]}
-                    rotation={[2 * Math.PI, 0, 6.25]}
-                    flatShading
-                    map={decal}
-                />
-            </mesh>
-        </Float>
+        <mesh castShadow receiveShadow scale={[3, 3, 3]}>
+            <boxGeometry args={[1, 1, 1]} /> {/* // Ajoute une géométrie de cube */}
+            <meshStandardMaterial color="#ffffff" /> {/* // Ajoute une couleur */}
+            
+            {/* // Ajoute des décalcomanies sur chaque faces du cube */}
+            <Decal position={[0, 0, 0.5]} rotation={[0, 0, 0]} scale={scale} map={texture} /> 
+            <Decal position={[0, 0, -0.5]} rotation={[Math.PI, 0, 0]} scale={scale} map={texture} />
+            <Decal position={[0.5, 0, 0]} rotation={[0, Math.PI / 2, 0]} scale={scale} map={texture} />
+            <Decal position={[-0.5, 0, 0]} rotation={[0, -Math.PI / 2, 0]} scale={scale} map={texture} />
+            <Decal position={[0, 0.5, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={scale} map={texture} />
+            <Decal position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]} scale={scale} map={texture} />
+        </mesh>
     );
 };
 
-const BallCanvas = ({ icon }) => {
+const CubeCanvas = ({ icon }) => {
     return (
-        <Canvas
-            frameloop="demand" // Optimise les performances
-            gl={{ preserveDrawingBuffer: true }} // Préserve le tampon de dessin
-        >
-            {/* Ajoute les contrôles de l'orbite */}
-            <Suspense fallback={<CanvasLoader />}>
-                <OrbitControls enableZoom={false} />
-                <Ball imgUrl={icon} />
+        <Canvas frameloop="demand" gl={{ preserveDrawingBuffer: true }}> {/* // Ajoute un canevas */}
+            <Suspense fallback={<CanvasLoader />}> {/* // Ajoute un indicateur de chargement */}
+                <OrbitControls enableZoom={false} /> {/* // Ajoute des contrôles d'orbite */}
+                <ambientLight intensity={1} /> {/* // Ajoute une lumière ambiante */}
+                <directionalLight position={[0, 1, 0.5]} />
+                <Cube imgUrl={icon} />
             </Suspense>
-
             <Preload all />
         </Canvas>
     );
 };
 
-export default BallCanvas;
+export default CubeCanvas;

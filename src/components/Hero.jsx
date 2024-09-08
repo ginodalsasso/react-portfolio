@@ -12,7 +12,7 @@ const Hero = () => {
             >
                 <div>
                     <h1 className={`${styles.heroHeadText} text-white`}>
-                        Hi, I am Gino.
+                        Hi, I am Gino
                     </h1>
                     <p className={`${styles.heroSubText} mt-2 text-white-100`}>
                         I develop web applications{" "}
@@ -21,7 +21,7 @@ const Hero = () => {
                     </p>
                 </div>
             </div>
-            {/* Ajoute le canvas de l'ordinateur */}
+            {/* Ajoute le canvas */}
             <AbstractShapeCanvas  />
             <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
                 <a href="#about">

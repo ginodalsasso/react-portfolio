@@ -8,10 +8,10 @@ import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
 const ExperienceCard = ({ experience }) => {
-    const [isExpanded, setIsExpanded] = useState(false); // Déclare une variable d'état pour l'expansion
+    const [isExpanded, setIsExpanded] = useState(false);
 
-    const toggleExpand = () => { // Déclare une fonction pour basculer l'expansion
-        setIsExpanded(!isExpanded); // Inverse l'état de l'expansion
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
     };
 
     return (
@@ -22,21 +22,22 @@ const ExperienceCard = ({ experience }) => {
                 border: '1px solid #e8e8e8',
                 borderRadius: '0', 
                 boxShadow: '0 0 40px rgba(252, 233, 225, 0.08)', 
-                maxHeight: isExpanded ? 'none' : '310px',
+                maxHeight: isExpanded ? 'none' : '510px',
                 display: 'flex',
                 flexDirection: 'column',
             }}
             iconStyle={{ 
                 background: '#0a0a0a',
-
-                // display: 'none'
             }}
-
-            date={experience.date}
+            date={''} // Cache la date à cet endroit
             style={{ 
                 '--vertical-timeline-element-line-width': '1px',
             }}
         >
+            {/* Date affichée au-dessus sur mobile */}
+            <div className="block text-secondary text-[16px] mb-2">
+                {experience.date}
+            </div>
             <div>
                 <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
                 <p className="text-secondary text-[20px] font-semi-bold" style={{ margin: 0 }}>
@@ -53,11 +54,12 @@ const ExperienceCard = ({ experience }) => {
                     </li>
                 ))}
             </ul>
-            <div className="flex justify-end">
+            <div className="flex justify-end sm:flex ">
                 <button onClick={toggleExpand} className="text-white text-[24px] font-bold hover:scale-125">
-                    {isExpanded ? '-' : '...'}
+                    {isExpanded ? '-' : '+'}
                 </button>
             </div>
+
         </VerticalTimelineElement>
     );
 };

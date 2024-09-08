@@ -11,7 +11,7 @@ import { Tilt } from "react-tilt";
 const ServiceCard = ({ index, title, icon }) => {
     return (
         // Ajoute un effet de basculement à la carte
-        <Tilt className="xs:w-[250px] w-full">
+        <Tilt className="xs:w-[190px] w-full">
             {/* // Ajoute un effet de fondu à la carte */}
             <motion.div
                 variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}   
@@ -22,9 +22,9 @@ const ServiceCard = ({ index, title, icon }) => {
                     scale: 1,
                     speed: 450
                 }}
-                className="bg-primary border py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
+                className="bg-primary border py-5 px-2 min-h-[190px] flex justify-evenly items-center flex-col"
                 >
-                    <img src={icon} alt={title} className="w-16 h-16 object-contain"/>
+                    {/* <img src={icon} alt={title} className="w-16 h-16 object-contain"/> */}
                     <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
 
                 </div>
@@ -43,12 +43,13 @@ const About = () => {
             </motion.div>
             <motion.p 
                 variants={fadeIn("", "", 0.1, 1)} 
-                className="mt-4 text-secondary text-[20px] max-w-3x1 leading-[30px] w-9/12		"
+                className="mt-4 text-secondary text-[20px] max-w-3x1 leading-[30px] w-9/12"
             >
                 Passionate about crafting digital solutions. Currently
                 undergoing training to become a proficient developer, I'm
                 dedicated to acquiring new skills and taking on stimulating
-                challenges.
+                challenges. <br />
+                Here is a list of the soft skills I have acquired along my journey :
             </motion.p>
             <div className="mt-20 flex flex-wrap justify-center	 gap-10">
                 {services.map((service, index) => (

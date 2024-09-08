@@ -32,11 +32,11 @@ const ProjectCard = ({
                         className="w-full h-full object-cover grayscale-[50%]"
                     />
                 </div>
-                <div className="absolute inset-0 flex justify-end m-4 card-img_hover">
+                <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
                     <div
                         // Ouvre le lien du code source dans un nouvel onglet
                         onClick={() => window.open(source_code_link, "_blank")}
-                        className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:scale-110	"
+                        className="black-gradient w-12 h-12 rounded-full flex justify-center items-center cursor-pointer hover:scale-110	"
                     >
                         <img
                             src={github}
