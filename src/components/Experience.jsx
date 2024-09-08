@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
 import 'react-vertical-timeline-component/style.min.css';
@@ -5,57 +6,77 @@ import { styles } from "../styles";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
-// import { div } from "three/examples/jsm/nodes/Nodes.js";
 
-const ExperienceCard = ({ experience }) => (
-    <VerticalTimelineElement
-        contentStyle={{ background: '#050712', color: '#fff', borderRadius: '15px', boxShadow: '0 0 40px rgba(252, 233, 225, 0.08)' }}
-        contentArrowStyle={{ borderRight: '7px solid  #232631' }}
-        date={experience.date}
-        iconStyle={{ background: experience.iconBg }}
-        icon={
-            <div className="flex justify-center items-center w-full h-full">
-                <img src={experience.icon} alt={experience.company_name} className="w-[60%] h-[60%] object-contain"/>
+const ExperienceCard = ({ experience }) => {
+    const [isExpanded, setIsExpanded] = useState(false); // Déclare une variable d'état pour l'expansion
 
+    const toggleExpand = () => { // Déclare une fonction pour basculer l'expansion
+        setIsExpanded(!isExpanded); // Inverse l'état de l'expansion
+    };
+
+    return (
+        <VerticalTimelineElement
+            contentStyle={{ 
+                background: '#0a0a0a', 
+                color: '#e8e8e8', 
+                border: '1px solid #e8e8e8',
+                borderRadius: '0', 
+                boxShadow: '0 0 40px rgba(252, 233, 225, 0.08)', 
+                maxHeight: isExpanded ? 'none' : '310px',
+                display: 'flex',
+                flexDirection: 'column',
+            }}
+            iconStyle={{ 
+                borderRadius: '0', 
+                background: '#0a0a0a',
+            }}
+
+            date={experience.date}
+            style={{ 
+                '--vertical-timeline-element-line-width': '1px',
+            }}
+        >
+            <div>
+                <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
+                <p className="text-secondary text-[20px] font-semi-bold" style={{ margin: 0 }}>
+                    {experience.company_name}
+                </p>
             </div>
-        }
-    >
-        <div>
-            <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
-            <p className="text-secondary text-[20px] font-semi-bold" style={{ margin: 0 }}>
-                {experience.company_name}
-            </p>
-        </div>
-        <ul className="mt-5 list-disc ml-5 space-y-2">
-            {experience.points.map((point, index) => (
-                <li 
-                    key={`experience-point-${index}`}
-                    className="text-white-100 text[18px] pl-1 tracking-wider"
-                >
-                    {point}
-                </li>
-            ))}
-        </ul>
-    </VerticalTimelineElement>
-
-    )
+            <ul className="mt-5 list-disc ml-5 space-y-2 flex-grow">
+                {experience.points.slice(0, isExpanded ? experience.points.length : 2).map((point, index) => (
+                    <li 
+                        key={`experience-point-${index}`}
+                        className="text-white-100 text[18px] pl-1 tracking-wider"
+                    >
+                        {point}
+                    </li>
+                ))}
+            </ul>
+            <div className="flex justify-end">
+                <button onClick={toggleExpand} className="text-white text-[24px] font-bold hover:scale-125">
+                    {isExpanded ? '-' : '...'}
+                </button>
+            </div>
+        </VerticalTimelineElement>
+    );
+};
 
 const Experience = () => {
     return (
         <>
-        <motion.div variants={textVariant()}>
-            <p className={styles.sectionSubText}>What have I done so far</p>
-            <h2 className={styles.sectionHeadText}>Work Experience.</h2>
-        </motion.div>
-        <div className="mt-20 flex flex-col">
-            <VerticalTimeline>
-                {experiences.map((experience, index) => (
-                    <ExperienceCard key={index} experience={experience} />
-                ))}
-            </VerticalTimeline>
-        </div>
+            <motion.div variants={textVariant()}>
+                <p className={styles.sectionSubText}>What have I done so far</p>
+                <h2 className={styles.sectionHeadText}>Work Experience.</h2>
+            </motion.div>
+            <div className="mt-20 flex flex-col">
+                <VerticalTimeline>
+                    {experiences.map((experience, index) => (
+                        <ExperienceCard key={index} experience={experience} />
+                    ))}
+                </VerticalTimeline>
+            </div>
         </>
-    )
-}
+    );
+};
 
 export default SectionWrapper(Experience, "work");

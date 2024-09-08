@@ -23,13 +23,13 @@ const ProjectCard = ({
                     scale: 1,
                     speed: 450,
                 }}
-                className="bg-primary p-5 rounded-2xl sm:w-[360px] w-full h-full shadow-card "
+                className="bg-primary p-5 border sm:w-[360px] w-full h-full shadow-card "
             >
                 <div className="relative w-full h-[230px]">
                     <img
                         src={image}
                         alt={name}
-                        className="w-full h-full object-cover rounded-2xl"
+                        className="w-full h-full object-cover grayscale-[50%]"
                     />
                 </div>
                 <div className="absolute inset-0 flex justify-end m-4 card-img_hover">
@@ -70,7 +70,7 @@ const ProjectCard = ({
 const Works = () => {
     return (
         <>
-            <section id="projects" className="pt-20">
+            <section id="projects">
                 <motion.div variants={textVariant()}>
                     <p className={styles.sectionSubText}>My work</p>
                     <h2 className={styles.sectionHeadText}>Projects.</h2>

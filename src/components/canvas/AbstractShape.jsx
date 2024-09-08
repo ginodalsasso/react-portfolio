@@ -11,49 +11,42 @@ const AbstractShape = ({ isMobile, controlsRef }) => {
     const objectRef = useRef();
 
     // Calculer et centrer l'objet dans la scène tout en conservant la position donnée
-    useEffect(() => {
-        if (objectRef.current) {
-            // Stocker la position actuelle
-            const currentPosition = objectRef.current.position.clone();
+    // useEffect(() => {
+    //     if (objectRef.current) {
+    //         // Stocker la position actuelle
+    //         const currentPosition = objectRef.current.position.clone();
 
-            // Calculer le centre du modèle
-            const box = new THREE.Box3().setFromObject(objectRef.current);
-            const center = box.getCenter(new THREE.Vector3());
-            objectRef.current.position.sub(center); // Centrer l'objet autour de son centre de gravité
+    //         // Calculer le centre du modèle
+    //         const box = new THREE.Box3().setFromObject(objectRef.current);
+    //         const center = box.getCenter(new THREE.Vector3());
+    //         objectRef.current.position.sub(center); // Centrer l'objet autour de son centre de gravité
 
-            // Appliquer la position donnée (celle définie dans les props)
-            objectRef.current.position.add(currentPosition);
+    //         // Appliquer la position donnée (celle définie dans les props)
+    //         objectRef.current.position.add(currentPosition);
 
-            // Si controlsRef est défini, centrez la caméra sur l'objet
-            if (controlsRef.current) {
-                controlsRef.current.target.copy(center);
-                controlsRef.current.update(); // Mettre à jour les contrôles pour appliquer immédiatement la nouvelle cible
-            }
-        }
-    }, [scene, controlsRef]);
+    //         // Si controlsRef est défini, centrez la caméra sur l'objet
+    //         if (controlsRef.current) {
+    //             controlsRef.current.target.copy(center);
+    //             controlsRef.current.update(); // Mettre à jour les contrôles pour appliquer immédiatement la nouvelle cible
+    //         }
+    //     }
+    // }, [scene, controlsRef]);
 
     return (
         <mesh ref={objectRef}>
             <directionalLight
                 // color="#f5d69d"
-                position={[5, 10, 5]}
-                intensity={8}
+                position={[8, 10, 5]}
+                intensity={4}
             />
-            <spotLight
-                position={[0, 5, 5]}
-                angle={1}
-                intensity={3}
-                shadow-mapSize={1024}
-            />
-
-            <pointLight intensity={6} position={[1, -0.2, 0]} />
-
+            <pointLight intensity={3} position={[1, 1, 0]} />
+            
             {/* Ajouter l'objet à la scène */}
             <primitive
                 object={scene}
-                scale={isMobile ? 1.5 : 2}
-                position={[0, 0, 0]} // Position spécifiée
-                rotation={[0, 0, 0]}
+                scale={isMobile ? 1.1 : 2}
+                position={[0, -0.2, 0]} // Position spécifiée
+                // rotation={[0, 0, 0]}
             />
         </mesh>
     );
@@ -111,17 +104,13 @@ const AbstractShapeCanvas = () => {
                     autoRotate
                     ref={controlsRef}
                     enableZoom={false}
-                    maxPolarAngle={Math.PI}
-                    minPolarAngle={0}
+                    maxPolarAngle={Math.PI / 2} 
+                    minPolarAngle={Math.PI / 2} 
                 />
                 {/* Passez controlsRef à AbstractShape pour centrer la caméra sur l'objet */}
                 <AbstractShape isMobile={isMobile} controlsRef={controlsRef} />
                 <EffectComposer>
-                    <Bloom
-                        luminanceThreshold={1}
-                        luminanceSmoothing={0.9}
-                        intensity={1.5}
-                    />
+                    <Bloom />
                 </EffectComposer>
             </Suspense>
             <Preload all />

@@ -14,34 +14,19 @@ const Ball = (props) => {
 
     return (
         // Crée une sphère flottante
-        <Float speed={1.2} rotationIntensity={1} floatIntensity={2}>
+        <Float speed={0.5} rotationIntensity={0.5} floatIntensity={2}>
             <ambientLight intensity={0.3} />
             <directionalLight position={[0, 0, 0.05]} />
-            {/* <mesh castShadow receiveShadow scale={2.75}> 
-                <icosahedronGeometry args={[1, 1]} /> 
-                <meshStandardMaterial // Ajoute un matériau standard à la sphère
-                    color={'#fff8eb'}
-                    polygonOffset
-                    polygonOffsetFactor={-5}
-                    flatShading
-                />
-                <Decal 
-                    position={[0, 0, 1]}
-                    rotation={[2 * Math.PI, 0, 6.25]}
-                    flatShading
-                    map={decal}
-                />
-            </mesh> */}
-            <mesh castShadow receiveShadow scale={2.75}>
-                <sphereGeometry args={[1, 32, 32]} />
+            <mesh castShadow receiveShadow scale={3}>
+                <boxGeometry args={[1, 1, 1]} />
                 <meshStandardMaterial
                     color={"#c4c4c4"}
-                    polygonOffset
+                    polygonOffset 
                     polygonOffsetFactor={-5}
                     flatShading
                 />
                 <Decal
-                    position={[0, 0, 1]}
+                    position={[0, 0, 0.5]}
                     rotation={[2 * Math.PI, 0, 6.25]}
                     flatShading
                     map={decal}

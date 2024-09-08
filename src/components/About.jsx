@@ -14,14 +14,14 @@ const ServiceCard = ({ index, title, icon }) => {
         <Tilt className="xs:w-[250px] w-full">
             <motion.div
                 variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}   
-                className="w-full green-pink-gradient p-[1px] rounded-[10px] shadow-card"
+                className="w-full  shadow-card"
             >
                 <div options={{
                     max: 45,
                     scale: 1,
                     speed: 450
                 }}
-                className="bg-primary rounded-[10px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
+                className="bg-primary border py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
                 >
                     <img src={icon} alt={title} className="w-16 h-16 object-contain"/>
                     <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
@@ -35,14 +35,15 @@ const ServiceCard = ({ index, title, icon }) => {
 const About = () => {
     return (
         <>
-            {/* Section présentation */}
+        {/* Section présentation */}
+
             <motion.div variants={textVariant()}>
                 <p className={styles.sectionSubText}>Introduction</p>
                 <h2 className={styles.sectionHeadText}>Overview.</h2>
             </motion.div>
             <motion.p 
                 variants={fadeIn("", "", 0.1, 1)} 
-                className="mt-4 text-secondary text-[20px] max-w-3x1 leading-[30px]"
+                className="mt-4 text-secondary text-[20px] max-w-3x1 leading-[30px] w-9/12		"
             >
                 Passionate about crafting digital solutions. Currently
                 undergoing training to become a proficient developer, I'm

@@ -64,7 +64,7 @@ const Contact = () => {
         <div className="xl:mt-12 overflow-hidden shadow-card_secondary">
             <motion.div
                 variants={slideIn("left", "tween", 0.2, 1)} // Ajoute une animation de défilement
-                className="flex-[0.75] bg-primary p-8 rounded-2xl"
+                className="flex-[0.75] bg-primary p-8 border"
             >
                 <p className={styles.sectionSubText}>Get in touch</p>
                 <h3 className={styles.sectionHeadText}>Contact</h3>
@@ -85,7 +85,7 @@ const Contact = () => {
                             value={form.name}
                             onChange={handleChange}
                             placeholder="What's your name ?"
-                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
                         />
                     </label>
                     <label className="flex flex-col">
@@ -99,7 +99,7 @@ const Contact = () => {
                             value={form.email}
                             onChange={handleChange}
                             placeholder="What's your email ?"
-                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
                         />
                     </label>
                     <label className="flex flex-col">
@@ -113,12 +113,12 @@ const Contact = () => {
                             value={form.message}
                             onChange={handleChange}
                             placeholder="What do you want to say ?"
-                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
                         />
                     </label>
                     <button
                         type="submit"
-                        className="bg-tertiary  py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl"
+                        className="bg-primary py-3 px-8 outline-none w-fit text-white font-bold shadow-md border shadow-primary hover:text-primary hover:bg-white"
                     >
                         {loading ? "Sending..." : "Send"}{" "}{/* Affiche le texte en fonction de l'état de chargement */}
                     </button>
