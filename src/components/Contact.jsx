@@ -16,8 +16,11 @@ const Contact = () => {
         message: "",
         consent: false,
     });
+    // Initialise l'état des erreurs avec un objet vide
     const [errors, setErrors] = useState({});
+    // Initialise l'état de chargement à false
     const [loading, setLoading] = useState(false);
+    // Initialise l'état captchaVerified à false
     const [captchaVerified, setCaptchaVerified] = useState(false);
 
     // Fonction de validation du formulaire
