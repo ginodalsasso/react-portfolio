@@ -21,8 +21,8 @@ const AbstractShape = ({ isMobile, controlsRef }) => {
             {/* Ajouter l'objet à la scène */}
             <primitive
                 object={scene}
-                scale={isMobile ? 1.1 : 2.5}
-                position={[0, -0.2, 0]} // Position spécifiée
+                scale={isMobile ? 1.1 : 2.3}
+                position={[0, -1, 0]} // Position spécifiée
                 // rotation={[0, 0, 0]}
             />
         </mesh>

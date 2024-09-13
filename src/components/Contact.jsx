@@ -4,27 +4,81 @@ import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import ReCAPTCHA from "react-google-recaptcha"; // Import ReCAPTCHA
 
+// Composant Contact
 const Contact = () => {
-    // déclare une variable de référence pour le formulaire
     const formRef = useRef();
-    // déclare une variable d'état pour le formulaire
     const [form, setForm] = useState({
+        // Initialise le formulaire avec des valeurs par défaut
         name: "",
         email: "",
         message: "",
+        consent: false,
     });
-    // déclare une variable d'état pour le chargement
+    const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
+    const [captchaVerified, setCaptchaVerified] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target; // Récupère le nom et la valeur de l'élément cible
-        setForm({ ...form, [name]: value }); // Met à jour l'état du formulaire
+    // Fonction de validation du formulaire
+    const validateForm = () => {
+        const newErrors = {};
+
+        // Validate name
+        if (form.name.length < 3) {
+            newErrors.name = "Name must be at least 3 characters long.";
+        } else if (form.name.length > 255) {
+            newErrors.name = "Name cannot exceed 255 characters.";
+        }
+
+        // Validate email using regex
+        const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        if (!emailRegex.test(form.email)) {
+            newErrors.email = "Please enter a valid email address.";
+        }
+
+        // Validate message
+        if (form.message.length < 10) {
+            newErrors.message = "Message must be at least 10 characters long.";
+        } else if (form.message.length > 2000) {
+            newErrors.message = "Message cannot exceed 2000 characters.";
+        }
+
+        // Validate consent
+        if (!form.consent) {
+            newErrors.consent = "You must accept the privacy policy.";
+        }
+
+        setErrors(newErrors);
+        // Retourne true si le formulaire est valide
+        return Object.keys(newErrors).length === 0;
     };
 
+    const handleChange = (e) => {
+        // Récupère les valeurs de l'événement
+        const { name, value, type, checked } = e.target;
+        // Met à jour le formulaire avec les nouvelles valeurs
+        setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+    };
+
+    const handleCaptchaChange = (value) => {
+        setCaptchaVerified(!!value); // Met à jour l'état captchaVerified en fonction de la valeur de la case cochée
+    };
+
+    // Traitement du formulaire
     const handleSubmit = (e) => {
-        e.preventDefault(); // Empêche le rechargement de la page
-        setLoading(true); // Met à jour l'état de chargement
+        e.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
+
+        if (!captchaVerified) {
+            alert("Please verify that you are not a robot.");
+            return;
+        }
+
+        setLoading(true);
 
         emailjs
             .send(
@@ -41,21 +95,23 @@ const Contact = () => {
             )
             .then(
                 () => {
-                    setLoading(false); // Met à jour l'état de chargement
+                    setLoading(false);
                     alert(
                         "Thank you. I will get back to you as soon as possible."
-                    ); // Affiche une alerte
-
+                    );
                     setForm({
                         name: "",
                         email: "",
                         message: "",
-                    }); // Réinitialise le formulaire
+                        consent: false,
+                    });
+                    setCaptchaVerified(false);
+                    setErrors({});
                 },
                 (error) => {
-                    setLoading(false); // Met à jour l'état de chargement
-                    alert("Something went wrong. Please try again."); // Affiche une alerte
-                    console.log(error.text); // Affiche l'erreur dans la console
+                    setLoading(false);
+                    alert("Something went wrong. Please try again.");
+                    console.log(error.text);
                 }
             );
     };
@@ -63,7 +119,7 @@ const Contact = () => {
     return (
         <div className="xl:mt-12 overflow-hidden shadow-card_secondary">
             <motion.div
-                variants={slideIn("left", "tween", 0.2, 1)} // Ajoute une animation de défilement
+                variants={slideIn("left", "tween", 0.2, 1)}
                 className="flex-[0.75] bg-primary p-8 border"
             >
                 <p className={styles.sectionSubText}>Get in touch</p>
@@ -75,10 +131,9 @@ const Contact = () => {
                     className="mt-12 flex flex-col gap-8"
                 >
                     <label className="flex flex-col">
-                        <span className="text-white font-medium mb-4 ">
+                        <span className="text-white font-medium mb-4">
                             Your Name
                         </span>
-
                         <input
                             type="text"
                             name="name"
@@ -87,12 +142,16 @@ const Contact = () => {
                             placeholder="What's your name ?"
                             className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
                         />
+                        {errors.name && (
+                            <span className="text-red-500 mt-2">
+                                {errors.name}
+                            </span>
+                        )}
                     </label>
                     <label className="flex flex-col">
-                        <span className="text-white font-medium  mb-4 ">
+                        <span className="text-white font-medium mb-4">
                             Your Email
                         </span>
-
                         <input
                             type="email"
                             name="email"
@@ -101,12 +160,16 @@ const Contact = () => {
                             placeholder="What's your email ?"
                             className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
                         />
+                        {errors.email && (
+                            <span className="text-red-500 mt-2">
+                                {errors.email}
+                            </span>
+                        )}
                     </label>
                     <label className="flex flex-col">
-                        <span className="text-white font-medium  mb-4 ">
+                        <span className="text-white font-medium mb-4">
                             Your Message
                         </span>
-
                         <textarea
                             rows="7"
                             name="message"
@@ -115,12 +178,51 @@ const Contact = () => {
                             placeholder="What do you want to say ?"
                             className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
                         />
+                        {errors.message && (
+                            <span className="text-red-500 mt-2">
+                                {errors.message}
+                            </span>
+                        )}
                     </label>
+
+                    <label className="flex flex-col items-start">
+                        <div className="flex items-center">
+                            <input
+                                type="checkbox"
+                                name="consent"
+                                checked={form.consent}
+                                onChange={handleChange}
+                                className="mr-2"
+                            />
+                            <span className="text-white">
+                                I agree to the{" "}
+                                <a
+                                    href="/privacy-policy"
+                                    className="text-secondary underline"
+                                >
+                                    privacy policy
+                                </a>
+                            </span>
+                        </div>
+                        {/* Affiche un message d'erreur sous le texte du consentement */}
+                        {errors.consent && (
+                            <span className="text-red-500 mt-2">
+                                {errors.consent}
+                            </span>
+                        )}
+                    </label>
+
+                    <ReCAPTCHA
+                        sitekey="RECAPTCHA_SITE_KEY"
+                        onChange={handleCaptchaChange}
+                    />
+
                     <button
                         type="submit"
                         className="bg-primary py-3 px-8 outline-none w-fit text-white font-bold shadow-md border shadow-primary hover:text-primary hover:bg-white"
                     >
-                        {loading ? "Sending..." : "Send"}{" "}{/* Affiche le texte en fonction de l'état de chargement */}
+                        {/* // Affiche "Sending..." si le formulaire est en cours de traitement, sinon "Send" */}
+                        {loading ? "Sending..." : "Send"}
                     </button>
                 </form>
             </motion.div>

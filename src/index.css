@@ -24,11 +24,9 @@
   font-family: "IBM Plex Sans", sans-serif;
 }
 
-.hash-span {
-  margin-top: -100px;
-  padding-bottom: 100px;
+/* .hash-span {
   display: block;
-}
+} */
 
 .black-gradient {
   background: #000000; /* fallback for old browsers */

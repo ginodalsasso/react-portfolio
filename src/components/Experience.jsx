@@ -55,7 +55,7 @@ const ExperienceCard = ({ experience }) => {
                 ))}
             </ul>
             <div className="flex justify-end sm:flex ">
-                <button onClick={toggleExpand} className="text-white text-[24px] font-bold hover:scale-125">
+                <button onClick={toggleExpand} className="text-white text-[30px] font-bold hover:scale-125">
                     {isExpanded ? '-' : '+'}
                 </button>
             </div>
