@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { AbstractShapeCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
+import resume from "../assets/resume.pdf";
 
 const Hero = () => {
+
     return (
         // Section présentation
         <section className="relative w-full h-95vh mx-auto">
@@ -21,8 +23,10 @@ const Hero = () => {
                     </p>
                 </div>
             </div>
+
             {/* Ajoute le canvas */}
-            <AbstractShapeCanvas  />
+            <AbstractShapeCanvas />
+
             <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
                 <a href="#about">
                     <div className="w-[35px] h-[64px] border border-secondary flex justify-center items-start p-2">
@@ -45,4 +49,5 @@ const Hero = () => {
     );
 };
 
+// Export the Hero component wrapped with SectionWrapper HOC
 export default SectionWrapper(Hero, "");

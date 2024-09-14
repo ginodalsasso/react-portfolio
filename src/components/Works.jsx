@@ -1,4 +1,3 @@
-// import Titl from 'react-titl'
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { github } from "../assets";
@@ -6,6 +5,7 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { projects } from "../constants";
 import { Tilt } from "react-tilt";
+import resume from "../assets/resume.pdf";
 
 const ProjectCard = ({
     index,
@@ -34,9 +34,8 @@ const ProjectCard = ({
                 </div>
                 <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
                     <div
-                        // Ouvre le lien du code source dans un nouvel onglet
                         onClick={() => window.open(source_code_link, "_blank")}
-                        className="black-gradient w-12 h-12 rounded-full flex justify-center items-center cursor-pointer hover:scale-110	"
+                        className="black-gradient w-12 h-12 rounded-full flex justify-center items-center cursor-pointer hover:scale-110"
                     >
                         <img
                             src={github}
@@ -52,7 +51,6 @@ const ProjectCard = ({
                     </p>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
-                    {/* Ajoute des tags de projet */}
                     {tags.map((tag) => (
                         <p
                             key={tag.name}
@@ -74,10 +72,14 @@ const Works = () => {
                 <motion.div variants={textVariant()}>
                     <p className={styles.sectionSubText}>My work</p>
                     <h2 className={styles.sectionHeadText}>Projects.</h2>
+                    {/* Lien pour télécharger le CV */}
+                    <a href={resume} className="font-bold bg-white px-4 py-2 text-primary" download="resume.pdf">
+                        Download CV
+                    </a>
                 </motion.div>
                 <div className="w-full flex">
                     <motion.p
-                        variants={fadeIn("", "", 0.1, 1)} // Ajoute une animation de fondu
+                        variants={fadeIn("", "", 0.1, 1)}
                         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
                     >
                         From shaping wood into masterpieces with chisels and
@@ -87,8 +89,8 @@ const Works = () => {
                         worlds. And now, here are my projects so far.
                     </motion.p>
                 </div>
+                <motion.div></motion.div>
                 <div className="mt-20 flex flex-wrap gap-7">
-                    {/* Ajoute un composant de carte de projet */}
                     {projects.map((project, index) => (
                         <ProjectCard
                             key={`project-${index}`}

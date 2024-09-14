@@ -5,6 +5,7 @@ import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 import ReCAPTCHA from "react-google-recaptcha"; // Import ReCAPTCHA
+import resume from "../assets/resume.pdf";
 
 // Composant Contact
 const Contact = () => {
@@ -127,6 +128,14 @@ const Contact = () => {
             >
                 <p className={styles.sectionSubText}>Get in touch</p>
                 <h3 className={styles.sectionHeadText}>Contact</h3>
+                {/* Lien pour télécharger le CV */}
+                <a
+                    href={resume}
+                    className="font-bold bg-white px-4 py-2 text-primary"
+                    download="resume.pdf"
+                >
+                    Download CV
+                </a>
 
                 <form
                     ref={formRef}
