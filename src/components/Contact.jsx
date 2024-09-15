@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import { textVariant } from "../utils/motion";
+
 import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
@@ -121,11 +123,8 @@ const Contact = () => {
     };
 
     return (
-        <div className="xl:mt-12 overflow-hidden shadow-card_secondary">
-            <motion.div
-                variants={slideIn("left", "tween", 0.2, 1)}
-                className="flex-[0.75] bg-primary p-8 border"
-            >
+        <div>
+            <motion.div variants={textVariant()}>
                 <p className={styles.sectionSubText}>Get in touch</p>
                 <h3 className={styles.sectionHeadText}>Contact</h3>
                 {/* Lien pour télécharger le CV */}
@@ -136,108 +135,114 @@ const Contact = () => {
                 >
                     Download CV
                 </a>
-
-                <form
-                    ref={formRef}
-                    onSubmit={handleSubmit}
-                    className="mt-12 flex flex-col gap-8"
-                >
-                    <label className="flex flex-col">
-                        <span className="text-white font-medium mb-4">
-                            Your Name
-                        </span>
-                        <input
-                            type="text"
-                            name="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            placeholder="What's your name ?"
-                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
-                        />
-                        {errors.name && (
-                            <span className="text-red-500 mt-2">
-                                {errors.name}
-                            </span>
-                        )}
-                    </label>
-                    <label className="flex flex-col">
-                        <span className="text-white font-medium mb-4">
-                            Your Email
-                        </span>
-                        <input
-                            type="email"
-                            name="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            placeholder="What's your email ?"
-                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
-                        />
-                        {errors.email && (
-                            <span className="text-red-500 mt-2">
-                                {errors.email}
-                            </span>
-                        )}
-                    </label>
-                    <label className="flex flex-col">
-                        <span className="text-white font-medium mb-4">
-                            Your Message
-                        </span>
-                        <textarea
-                            rows="7"
-                            name="message"
-                            value={form.message}
-                            onChange={handleChange}
-                            placeholder="What do you want to say ?"
-                            className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
-                        />
-                        {errors.message && (
-                            <span className="text-red-500 mt-2">
-                                {errors.message}
-                            </span>
-                        )}
-                    </label>
-
-                    <label className="flex flex-col items-start">
-                        <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                name="consent"
-                                checked={form.consent}
-                                onChange={handleChange}
-                                className="mr-2"
-                            />
-                            <span className="text-white">
-                                I agree to the{" "}
-                                <a
-                                    href="/privacy-policy"
-                                    className="text-secondary underline"
-                                >
-                                    privacy policy
-                                </a>
-                            </span>
-                        </div>
-                        {/* Affiche un message d'erreur sous le texte du consentement */}
-                        {errors.consent && (
-                            <span className="text-red-500 mt-2">
-                                {errors.consent}
-                            </span>
-                        )}
-                    </label>
-
-                    <ReCAPTCHA
-                        sitekey="RECAPTCHA_SITE_KEY"
-                        onChange={handleCaptchaChange}
-                    />
-
-                    <button
-                        type="submit"
-                        className="bg-primary py-3 px-8 outline-none w-fit text-white font-bold shadow-md border shadow-primary hover:text-primary hover:bg-white"
-                    >
-                        {/* // Affiche "Sending..." si le formulaire est en cours de traitement, sinon "Send" */}
-                        {loading ? "Sending..." : "Send"}
-                    </button>
-                </form>
             </motion.div>
+            <div className="mt-10 overflow-hidden shadow-card_secondary">
+                <motion.div
+                    variants={slideIn("left", "tween", 0.2, 1)}
+                    className="flex-[0.75] bg-primary p-4 border"
+                >
+                    <form
+                        ref={formRef}
+                        onSubmit={handleSubmit}
+                        className=" flex flex-col gap-8"
+                    >
+                        <label className="flex flex-col">
+                            <span className="text-white font-medium mb-4">
+                                Your Name
+                            </span>
+                            <input
+                                type="text"
+                                name="name"
+                                value={form.name}
+                                onChange={handleChange}
+                                placeholder="What's your name ?"
+                                className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
+                            />
+                            {errors.name && (
+                                <span className="text-red-500 mt-2">
+                                    {errors.name}
+                                </span>
+                            )}
+                        </label>
+                        <label className="flex flex-col">
+                            <span className="text-white font-medium mb-4">
+                                Your Email
+                            </span>
+                            <input
+                                type="email"
+                                name="email"
+                                value={form.email}
+                                onChange={handleChange}
+                                placeholder="What's your email ?"
+                                className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
+                            />
+                            {errors.email && (
+                                <span className="text-red-500 mt-2">
+                                    {errors.email}
+                                </span>
+                            )}
+                        </label>
+                        <label className="flex flex-col">
+                            <span className="text-white font-medium mb-4">
+                                Your Message
+                            </span>
+                            <textarea
+                                rows="7"
+                                name="message"
+                                value={form.message}
+                                onChange={handleChange}
+                                placeholder="What do you want to say ?"
+                                className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
+                            />
+                            {errors.message && (
+                                <span className="text-red-500 mt-2">
+                                    {errors.message}
+                                </span>
+                            )}
+                        </label>
+
+                        <label className="flex flex-col items-start">
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    name="consent"
+                                    checked={form.consent}
+                                    onChange={handleChange}
+                                    className="mr-2"
+                                />
+                                <span className="text-white">
+                                    I agree to the{" "}
+                                    <a
+                                        href="/privacy-policy"
+                                        className="text-secondary underline"
+                                    >
+                                        privacy policy
+                                    </a>
+                                </span>
+                            </div>
+                            {/* Affiche un message d'erreur sous le texte du consentement */}
+                            {errors.consent && (
+                                <span className="text-red-500 mt-2">
+                                    {errors.consent}
+                                </span>
+                            )}
+                        </label>
+
+                        <ReCAPTCHA
+                            sitekey="RECAPTCHA_SITE_KEY"
+                            onChange={handleCaptchaChange}
+                        />
+
+                        <button
+                            type="submit"
+                            className="bg-primary py-3 px-8 outline-none w-fit text-white font-bold shadow-md border shadow-primary hover:text-primary hover:bg-white"
+                        >
+                            {/* // Affiche "Sending..." si le formulaire est en cours de traitement, sinon "Send" */}
+                            {loading ? "Sending..." : "Send"}
+                        </button>
+                    </form>
+                </motion.div>
+            </div>
         </div>
     );
 };

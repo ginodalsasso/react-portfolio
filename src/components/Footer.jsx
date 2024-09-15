@@ -12,7 +12,7 @@ const Footer = () => {
             border border-secondary
         `}
         >
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center mb-2">
                 <div className="flex gap-3">
                     <Link
                         to="/privacy-policy"

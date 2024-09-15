@@ -15,12 +15,17 @@ module.exports = {
       height: {
         '95vh': '95vh',
       },
+      textOutline: {
+        '-webkit-text-stroke-width': '5px',
+        '-webkit-text-stroke-color': 'black',
+      },
       boxShadow: {
         card: "0px 35px 120px -15px #303030",
         card_secondary: "rgba(252, 233, 225, 0.08) 0px 0px 40px",
       },
       screens: {
         xs: "450px",
+        lg: "900px",
       },
     },
   },

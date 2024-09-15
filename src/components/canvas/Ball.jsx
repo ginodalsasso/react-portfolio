@@ -25,11 +25,11 @@ const Cube = ({ imgUrl }) => {
 
 const CubeCanvas = ({ icon }) => {
     return (
-        <Canvas frameloop="demand" gl={{ preserveDrawingBuffer: true }}> {/* // Ajoute un canevas */}
-            <Suspense fallback={<CanvasLoader />}> {/* // Ajoute un indicateur de chargement */}
-                <OrbitControls enableZoom={false} /> {/* // Ajoute des contrôles d'orbite */}
-                <ambientLight intensity={1} /> {/* // Ajoute une lumière ambiante */}
-                <directionalLight position={[0, 1, 0.5]} />
+        <Canvas frameloop="demand" gl={{ preserveDrawingBuffer: true }}>
+            <Suspense fallback={<CanvasLoader />}>
+                <OrbitControls enableZoom={false} enableDamping={true} /> {/* Active l'amortissement pour les contrôles d'orbite */}
+                <ambientLight intensity={0.8} /> {/* Ajuste l'intensité de la lumière ambiante */}
+                <directionalLight position={[0, 1, 0.5]} intensity={0.8} /> 
                 <Cube imgUrl={icon} />
             </Suspense>
             <Preload all />

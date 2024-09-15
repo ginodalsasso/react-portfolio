@@ -10,7 +10,7 @@ const Hero = () => {
         // Section présentation
         <section className="relative w-full h-95vh mx-auto">
             <div
-                className={`${styles.paddingX} absolute inset-0 top-[40px] sm:top-[75px] max-w-7xl mx-auto flex flex-row items-start gap-5`}
+                className="absolute inset-0 top-[40px] sm:top-[40px] max-w-7xl mx-auto flex flex-row items-start gap-5 px-6 z-10" 
             >
                 <div>
                     <h1 className={`${styles.heroHeadText} text-white`}>
@@ -27,9 +27,9 @@ const Hero = () => {
             {/* Ajoute le canvas */}
             <AbstractShapeCanvas />
 
-            <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
-                <a href="#about">
-                    <div className="w-[35px] h-[64px] border border-secondary flex justify-center items-start p-2">
+            <div className="absolute bottom-12 xs:bottom-10 sm:bottom-20 w-full flex justify-center items-center z-20">
+            <a href="#about">
+                    <div className="w-[35px] h-[64px] border border-secondary bg-primary flex justify-center items-start p-2">
                         {/* Ajoute la flèche de défilement */}
                         <motion.div
                             animate={{

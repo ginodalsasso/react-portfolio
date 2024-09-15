@@ -9,14 +9,14 @@ const AbstractShape = React.memo(({ isMobile, controlsRef }) => {
     const { scene } = useGLTF("./paradox_abstract/scene.gltf");
     const objectRef = useRef();
 
-    const scaleValue = useMemo(() => isMobile ? 1.3 : 2.3, [isMobile]);
-    const positionValue = useMemo(() => isMobile ? [0, 0, 0] : [0, -1, 0], [isMobile]);
+    const scaleValue = useMemo(() => isMobile ? 1.3 : 2.8, [isMobile]);
+    const positionValue = useMemo(() => isMobile ? [0, 0, 0] : [0, 0.2, 0], [isMobile]);
 
     return (
         <mesh ref={objectRef}>
             <directionalLight
                 // color="#f5d69d"
-                position={[8, 10, 5]}
+                position={[1, 10, 5]}
                 intensity={isMobile ? 6 : 8}
             />
             <ambientLight intensity={isMobile ? 0.5 : 0.7} color="#ffffff" />
@@ -24,7 +24,7 @@ const AbstractShape = React.memo(({ isMobile, controlsRef }) => {
             <directionalLight
                 position={[-5, -5, -5]}
                 intensity={isMobile ? 4 : 6}
-                color="#b6ceff"
+                color="#404040"
             />
             {/* Ajouter l'objet à la scène */}
             <primitive
@@ -80,8 +80,8 @@ const AbstractShapeCanvas = () => {
             autoRotate
             ref={controlsRef}
             enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
+            // maxPolarAngle={Math.PI / 2}
+            // minPolarAngle={Math.PI / 2}
         />
     ), []);
 

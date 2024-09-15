@@ -17,7 +17,7 @@ const Navbar = () => {
                 border border-secondary
             `}
         >
-            <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+            <div className="w-full flex justify-between items-center max-w-6xl mx-auto">
                 <Link
                     to="/"
                     className="flex items-center gap-2"
@@ -31,7 +31,7 @@ const Navbar = () => {
                         <span> | Junior Developer</span>
                     </p>  
                 </Link>
-                <ul className="list-none hidden sm:flex flex-row gap-10">
+                <ul className="list-none hidden lg:flex flex-row gap-10">
                     {navLinks.map((link) => (
                         <li
                             key={link.id}
@@ -43,7 +43,7 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <div className="sm:hidden flex flex-1 justify-end items-center">
+                <div className="lg:hidden flex flex-1 justify-end items-center">
                     <img 
                         src={toggle ?  close : menu} alt="menu"
                         className="w-[28px] h-[28px] object-contain cursor-pointer" 
