@@ -16,27 +16,33 @@ const ProjectCard = ({
     source_code_link,
 }) => {
     return (
-        <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+        <motion.div
+            variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+            className="w-full sm:w-[360px]"
+        >
             <Tilt
                 options={{
                     max: 45,
                     scale: 1,
-                    speed: 450,
+                    speed: 250,
                 }}
-                className="bg-primary p-5 border sm:w-[360px] w-full h-full shadow-card "
+                className="bg-primary p-3 sm:p-5 border w-full h-full shadow-card"
             >
-                <div className="relative w-full h-[230px]">
-                    <img
-                        src={image}
-                        alt={name}
-                        className="w-full h-full object-cover grayscale-[50%]"
-                    />
-                </div>
-                <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-                    <div
-                        onClick={() => window.open(source_code_link, "_blank")}
-                        className="black-gradient w-12 h-12 rounded-full flex justify-center items-center cursor-pointer hover:scale-110"
-                    >
+                <div
+                    onClick={() => window.open(source_code_link, "_blank")}
+                    className="relative cursor-pointer"
+                >
+                    <div className="relative w-full h-[200px]">
+                        <img
+                            src={image}
+                            alt={name}
+                            className="w-full h-full object-cover grayscale-[50%]"
+                        />
+                    </div>
+                    <div className="black-gradient w-10 h-10 rounded-full flex justify-center items-center absolute top-[-10px] right-[-10px]">
                         <img
                             src={github}
                             alt="github"
@@ -45,8 +51,8 @@ const ProjectCard = ({
                     </div>
                 </div>
                 <div className="mt-5">
-                    <h3 className="text-white font-bold text-[24px]">{name}</h3>
-                    <p className="mt-2 text-secondary h-full text-[18px]">
+                    <h3 className="text-white font-bold text-[20px] sm:text-[24px]">{name}</h3>
+                    <p className="mt-2 text-secondary text-[14px] sm:text-[16px]">
                         {description}
                     </p>
                 </div>
@@ -54,7 +60,7 @@ const ProjectCard = ({
                     {tags.map((tag) => (
                         <p
                             key={tag.name}
-                            className={`text-[14px] ${tag.color}`}
+                            className={`text-[12px] sm:text-[14px] ${tag.color}`}
                         >
                             #{tag.name}
                         </p>
@@ -67,40 +73,50 @@ const ProjectCard = ({
 
 const Works = () => {
     return (
-        <>
-            <section id="projects">
-                <motion.div variants={textVariant()}>
-                    <p className={styles.sectionSubText}>My work</p>
-                    <h2 className={styles.sectionHeadText}>Projects.</h2>
-                    {/* Lien pour télécharger le CV */}
-                    <a href={resume} className="font-bold bg-white px-4 py-2 text-primary" download="resume.pdf">
-                        Download CV
-                    </a>
-                </motion.div>
-                <div className="w-full flex">
-                    <motion.p
-                        variants={fadeIn("", "", 0.1, 1)}
-                        className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
-                    >
-                        From shaping wood into masterpieces with chisels and
-                        hammers to crafting digital wonders with code, I
-                        transitioned from a skilled carpenter to a passionate
-                        developer, seamlessly blending the artistry of both
-                        worlds. And now, here are my projects so far.
-                    </motion.p>
-                </div>
-                <motion.div></motion.div>
-                <div className="mt-20 flex flex-wrap gap-7">
-                    {projects.map((project, index) => (
-                        <ProjectCard
-                            key={`project-${index}`}
-                            index={index}
-                            {...project}
-                        />
-                    ))}
-                </div>
-            </section>
-        </>
+        <section id="projects" className="relative z-0">
+            <motion.div
+                variants={textVariant()}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.25 }}
+            >
+                <p className={styles.sectionSubText}>My work</p>
+                <h2 className={styles.sectionHeadText}>Projects.</h2>
+                <a
+                    href={resume}
+                    className="inline-block mt-4 font-bold bg-white px-4 py-2 text-primary hover:bg-gray-200 transition-colors"
+                    download="resume.pdf"
+                >
+                    Download CV
+                </a>
+            </motion.div>
+
+            <motion.div
+                variants={fadeIn("", "", 0.1, 1)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.25 }}
+                className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+            >
+                <p>
+                    From shaping wood into masterpieces with chisels and
+                    hammers to crafting digital wonders with code, I
+                    transitioned from a skilled carpenter to a passionate
+                    developer, seamlessly blending the artistry of both
+                    worlds. And now, here are my projects so far.
+                </p>
+            </motion.div>
+
+            <div className="mt-20 flex flex-wrap justify-center gap-7">
+                {projects.map((project, index) => (
+                    <ProjectCard
+                        key={`project-${index}`}
+                        index={index}
+                        {...project}
+                    />
+                ))}
+            </div>
+        </section>
     );
 };
 

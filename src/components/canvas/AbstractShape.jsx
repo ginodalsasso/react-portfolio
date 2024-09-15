@@ -1,33 +1,40 @@
-import React, { Suspense, useEffect, useState, useRef } from "react";
+import React, { Suspense, useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 import CanvasLoader from "../Loader";
 
-const AbstractShape = ({ isMobile, controlsRef }) => {
+const AbstractShape = React.memo(({ isMobile, controlsRef }) => {
     const { scene } = useGLTF("./paradox_abstract/scene.gltf");
     const objectRef = useRef();
+
+    const scaleValue = useMemo(() => isMobile ? 1.3 : 2.3, [isMobile]);
+    const positionValue = useMemo(() => isMobile ? [0, 0, 0] : [0, -1, 0], [isMobile]);
 
     return (
         <mesh ref={objectRef}>
             <directionalLight
                 // color="#f5d69d"
                 position={[8, 10, 5]}
-                intensity={8}
+                intensity={isMobile ? 6 : 8}
             />
-            <pointLight intensity={3} position={[1, 1, 0]} />
-            
+            <ambientLight intensity={isMobile ? 0.5 : 0.7} color="#ffffff" />
+
+            <directionalLight
+                position={[-5, -5, -5]}
+                intensity={isMobile ? 4 : 6}
+                color="#b6ceff"
+            />
             {/* Ajouter l'objet à la scène */}
             <primitive
                 object={scene}
-                scale={isMobile ? 1.1 : 2.3}
-                position={[0, -1, 0]} // Position spécifiée
-                // rotation={[0, 0, 0]}
+                scale={scaleValue}
+                position={positionValue}
             />
         </mesh>
     );
-};
+});
 
 const AbstractShapeCanvas = () => {
     // Déclare un état `isMobile` pour déterminer si l'utilisateur est sur un appareil mobile
@@ -37,6 +44,10 @@ const AbstractShapeCanvas = () => {
     const controlsRef = useRef();
 
     // Utilise `useEffect` pour détecter si l'utilisateur est sur un appareil mobile
+    const handleMediaQueryChange = useCallback((event) => {
+        setIsMobile(event.matches);
+    }, []);
+
     useEffect(() => {
         // Cela vérifie si la largeur de l'écran est de 500px ou moins
         const mediaQuery = window.matchMedia("(max-width: 500px)");
@@ -45,17 +56,13 @@ const AbstractShapeCanvas = () => {
         setIsMobile(mediaQuery.matches);
 
         // Définit une fonction pour mettre à jour `isMobile` chaque fois que le media query change
-        const handleMediaQueryChange = (event) => {
-            setIsMobile(event.matches);
-        };
-
         mediaQuery.addEventListener("change", handleMediaQueryChange);
 
         // Nettoie l'écouteur d'événements lorsque le composant est démonté
         return () => {
             mediaQuery.removeEventListener("change", handleMediaQueryChange);
         };
-    }, []); // Le tableau de dépendances vide [] signifie que cet effet s'exécutera uniquement lors du premier montage du composant
+    }, [handleMediaQueryChange]); // Le tableau de dépendances contient handleMediaQueryChange
 
     useEffect(() => {
         // Vérifie si la référence des contrôles (controlsRef) est définie
@@ -68,26 +75,30 @@ const AbstractShapeCanvas = () => {
         }
     }, []); // Le tableau vide [] signifie que cet effet ne s'exécutera qu'une seule fois après le premier rendu du composant
 
+    const memoizedOrbitControls = useMemo(() => (
+        <OrbitControls
+            autoRotate
+            ref={controlsRef}
+            enableZoom={false}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+        />
+    ), []);
+
     return (
         <Canvas
-            frameloop="always"
+            frameloop="demand"
             shadows
-            dpr={[1, 2]}
+            dpr={[1, isMobile ? 1.5 : 2]}
             camera={{ position: [20, 3, 5], fov: 25 }}
-            gl={{ preserveDrawingBuffer: true }}
+            gl={{ preserveDrawingBuffer: true, powerPreference: "high-performance" }}
         >
             <Suspense fallback={<CanvasLoader />}>
-                <OrbitControls
-                    autoRotate
-                    ref={controlsRef}
-                    enableZoom={false}
-                    maxPolarAngle={Math.PI / 2} 
-                    minPolarAngle={Math.PI / 2} 
-                />
+                {memoizedOrbitControls}
                 {/* Passez controlsRef à AbstractShape pour centrer la caméra sur l'objet */}
                 <AbstractShape isMobile={isMobile} controlsRef={controlsRef} />
                 <EffectComposer>
-                    <Bloom />
+                    <Bloom luminanceSmoothing={0.9} height={300} />
                 </EffectComposer>
             </Suspense>
             <Preload all />
