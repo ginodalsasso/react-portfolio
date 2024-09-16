@@ -24,9 +24,12 @@
   font-family: "IBM Plex Sans", sans-serif;
 }
 
-/* .hash-span {
+.hash-span {
   display: block;
-} */
+  position: relative;
+  top: -100px;
+  height: 0;
+}
 
 .black-gradient {
   background: #000000; /* fallback for old browsers */

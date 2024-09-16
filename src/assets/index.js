@@ -15,12 +15,12 @@ import git from "./tech/git.png";
 import html from "./tech/html.png";
 import javascript from "./tech/javascript.png";
 import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
+import jquery from "./tech/jquery.png";
 import reactjs from "./tech/reactjs.png";
-import redux from "./tech/redux.png";
+import symfony from "./tech/symfony.png";
 import tailwind from "./tech/tailwind.png";
-import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.svg";
+import php from "./tech/php.png";
+import mysql from "./tech/mysql.png";
 
 import tuttopasta from "./tuttopasta.png";
 import session from "./session.png";
@@ -44,12 +44,12 @@ export {
   html,
   javascript,
   mongodb,
-  nodejs,
+  jquery,
   reactjs,
-  redux,
+  symfony,
   tailwind,
-  typescript,
-  threejs,
+  php,
+  mysql,
   tuttopasta,
   session,
   forum,

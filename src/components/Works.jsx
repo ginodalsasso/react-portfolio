@@ -17,7 +17,7 @@ const ProjectCard = ({
 }) => {
     return (
         <motion.div
-            variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+            variants={fadeIn("up", "spring", index * 0.5, 0.75)} // 
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
@@ -107,7 +107,7 @@ const Works = () => {
                 </p>
             </motion.div>
 
-            <div className="mt-20 flex flex-wrap justify-center gap-7">
+            <div className="mt-10 flex flex-wrap justify-center gap-7">
                 {projects.map((project, index) => (
                     <ProjectCard
                         key={`project-${index}`}
@@ -120,4 +120,4 @@ const Works = () => {
     );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "projects");

@@ -3,13 +3,13 @@ import {
     backend,
     web,
     javascript,
-    typescript,
+    php,
     html,
     css,
     reactjs,
-    redux,
+    symfony,
     tailwind,
-    nodejs,
+    jquery,
     mongodb,
     git,
     figma,
@@ -19,7 +19,7 @@ import {
     forum,
     wikifilm,
     iller,
-    threejs,
+    mysql,
 } from "../assets";
 
 export const navLinks = [
@@ -78,32 +78,32 @@ const technologies = [
         icon: javascript,
     },
     {
-        name: "TypeScript",
-        icon: typescript,
+        name: "PHP",
+        icon: php,
     },
     {
         name: "React JS",
         icon: reactjs,
     },
     {
-        name: "Redux Toolkit",
-        icon: redux,
+        name: "Symfony",
+        icon: symfony,
     },
     {
         name: "Tailwind CSS",
         icon: tailwind,
     },
     {
-        name: "Node JS",
-        icon: nodejs,
+        name: "Jquery",
+        icon: jquery,
     },
     {
         name: "MongoDB",
         icon: mongodb,
     },
     {
-        name: "Three JS",
-        icon: threejs,
+        name: "MySQL",
+        icon: mysql,
     },
     {
         name: "git",

@@ -63,7 +63,7 @@ const About = () => {
                 Here is a list of the soft skills I have acquired along my
                 journey :
             </motion.p>
-            <div className="mt-20 flex flex-wrap justify-center	 gap-10">
+            <div className="mt-10 flex flex-wrap justify-center gap-10">
                 {services.map((service, index) => (
                     <ServiceCard
                         key={service.title}

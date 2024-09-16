@@ -136,16 +136,9 @@ const Contact = () => {
                     Download CV
                 </a>
             </motion.div>
-            <div className="mt-10 overflow-hidden shadow-card_secondary">
-                <motion.div
-                    variants={slideIn("left", "tween", 0.2, 1)}
-                    className="flex-[0.75] bg-primary p-4 border"
-                >
-                    <form
-                        ref={formRef}
-                        onSubmit={handleSubmit}
-                        className=" flex flex-col gap-8"
-                    >
+            <motion.div variants={slideIn("left", "tween", 0.2, 1)} className="mt-10 overflow-hidden shadow-card_secondary">
+                <div className="flex-[0.75] bg-primary p-4 border">
+                    <form ref={formRef} onSubmit={handleSubmit} className=" flex flex-col gap-8">
                         <label className="flex flex-col">
                             <span className="text-white font-medium mb-4">
                                 Your Name
@@ -241,8 +234,8 @@ const Contact = () => {
                             {loading ? "Sending..." : "Send"}
                         </button>
                     </form>
-                </motion.div>
-            </div>
+                </div>
+            </motion.div>
         </div>
     );
 };
