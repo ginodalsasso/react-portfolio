@@ -28,7 +28,7 @@ const Navbar = () => {
                 >
                     <p className='text-white text-[20px] py-4 font-bold cursor-pointer flex'>
                         Gino &nbsp;
-                        <span> | Junior Developer</span>
+                        <span> / Junior Developer</span>
                     </p>  
                 </Link>
                 <ul className="list-none hidden lg:flex flex-row gap-10">
@@ -36,7 +36,8 @@ const Navbar = () => {
                         <li
                             key={link.id}
                             className={`${active === link.title ? "text-white" : "text-secondary"} 
-                                hover:text-white hover:border-x py-4 px-3 text-[20px] font-medium cursor-pointer`}
+                            hover:text-black hover:bg-secondary py-1 px-3 text-[20px] font-medium cursor-pointer`}
+                        style={{ height: '40px'}}
                             onClick={() => setActive(link.title)}
                         >
                             <a href={`#${link.id}`}>{link.title}</a>

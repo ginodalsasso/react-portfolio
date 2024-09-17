@@ -25,11 +25,11 @@ const ExperienceCard = ({ experience }) => {
                 maxHeight: isExpanded ? 'none' : '510px',
                 display: 'flex',
                 flexDirection: 'column',
+                padding: '30px',
             }}
             iconStyle={{ 
                 background: '#0a0a0a',
             }}
-            date={''} // Cache la date à cet endroit
             style={{ 
                 '--vertical-timeline-element-line-width': '1px',
             }}
@@ -55,11 +55,12 @@ const ExperienceCard = ({ experience }) => {
                 ))}
             </ul>
             <div className="flex justify-end sm:flex ">
-                <button onClick={toggleExpand} className="text-white text-[30px] font-bold hover:scale-125">
+                <button onClick={toggleExpand}        
+                    className="flex items-center justify-center w-8 h-8 text-[18px] pb-1 bg-white rounded-full text-black font-bold hover:scale-125 transition-transform"
+                >
                     {isExpanded ? '-' : '+'}
                 </button>
             </div>
-
         </VerticalTimelineElement>
     );
 };

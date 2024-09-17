@@ -126,17 +126,9 @@ const Contact = () => {
         <div>
             <motion.div variants={textVariant()}>
                 <p className={styles.sectionSubText}>Get in touch</p>
-                <h3 className={styles.sectionHeadText}>Contact</h3>
-                {/* Lien pour télécharger le CV */}
-                <a
-                    href={resume}
-                    className="font-bold bg-white px-4 py-2 text-primary"
-                    download="resume.pdf"
-                >
-                    Download CV
-                </a>
+                <h3 className={styles.sectionHeadText}>Contact.</h3>
             </motion.div>
-            <motion.div variants={slideIn("left", "tween", 0.2, 1)} className="mt-10 overflow-hidden shadow-card_secondary">
+            <div className="mt-10 overflow-hidden shadow-card_secondary">
                 <div className="flex-[0.75] bg-primary p-4 border">
                     <form ref={formRef} onSubmit={handleSubmit} className=" flex flex-col gap-8">
                         <label className="flex flex-col">
@@ -149,8 +141,8 @@ const Contact = () => {
                                 value={form.name}
                                 onChange={handleChange}
                                 placeholder="What's your name ?"
-                                className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
-                            />
+                                className="bg-tertiary py-4 px-6 text-white  font-medium"
+                                />
                             {errors.name && (
                                 <span className="text-red-500 mt-2">
                                     {errors.name}
@@ -167,7 +159,7 @@ const Contact = () => {
                                 value={form.email}
                                 onChange={handleChange}
                                 placeholder="What's your email ?"
-                                className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
+                                className="bg-tertiary py-4 px-6 text-white font-medium"
                             />
                             {errors.email && (
                                 <span className="text-red-500 mt-2">
@@ -185,7 +177,7 @@ const Contact = () => {
                                 value={form.message}
                                 onChange={handleChange}
                                 placeholder="What do you want to say ?"
-                                className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border font-medium"
+                                className="bg-tertiary py-4 px-6 text-white font-medium"
                             />
                             {errors.message && (
                                 <span className="text-red-500 mt-2">
@@ -235,7 +227,7 @@ const Contact = () => {
                         </button>
                     </form>
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 };

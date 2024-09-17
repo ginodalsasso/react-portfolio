@@ -16,7 +16,7 @@ const Hero = () => {
                     <h1 className={`${styles.heroHeadText} text-white`}>
                         Hi, I am Gino
                     </h1>
-                    <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+                    <p className={`${styles.heroSubText} text-white`}>
                         I develop web applications{" "}
                         <br className="sm:block hidden" />
                         and websites
@@ -29,7 +29,7 @@ const Hero = () => {
 
             <div className="absolute bottom-12 xs:bottom-10 sm:bottom-20 w-full flex justify-center items-center z-20">
             <a href="#about">
-                    <div className="w-[35px] h-[64px] border border-secondary bg-primary flex justify-center items-start p-2">
+                    <div className="w-[35px] h-[64px] border rounded-full	 bg-primary flex justify-center items-start p-2">
                         {/* Ajoute la flèche de défilement */}
                         <motion.div
                             animate={{
@@ -40,7 +40,7 @@ const Hero = () => {
                                 repeat: Infinity,
                                 repeatType: "loop",
                             }}
-                            className="w-3 h-3 bg-secondary"
+                            className="w-3 h-3 rounded-full bg-secondary"
                         />
                     </div>
                 </a>

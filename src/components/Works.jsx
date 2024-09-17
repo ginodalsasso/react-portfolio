@@ -17,7 +17,7 @@ const ProjectCard = ({
 }) => {
     return (
         <motion.div
-            variants={fadeIn("up", "spring", index * 0.5, 0.75)} // 
+            variants={fadeIn("up", "spring", index * 0.1, 0.75)} // 
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
@@ -25,7 +25,7 @@ const ProjectCard = ({
         >
             <Tilt
                 options={{
-                    max: 45,
+                    max: 10,
                     scale: 1,
                     speed: 250,
                 }}
@@ -82,13 +82,6 @@ const Works = () => {
             >
                 <p className={styles.sectionSubText}>My work</p>
                 <h2 className={styles.sectionHeadText}>Projects.</h2>
-                <a
-                    href={resume}
-                    className="inline-block mt-4 font-bold bg-white px-4 py-2 text-primary hover:bg-gray-200 transition-colors"
-                    download="resume.pdf"
-                >
-                    Download CV
-                </a>
             </motion.div>
 
             <motion.div
@@ -98,7 +91,7 @@ const Works = () => {
                 viewport={{ once: true, amount: 0.25 }}
                 className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
             >
-                <p>
+                <p className="mt-4 text-secondary text-[20px] max-w-3xl leading-[30px]">
                     From shaping wood into masterpieces with chisels and
                     hammers to crafting digital wonders with code, I
                     transitioned from a skilled carpenter to a passionate
