@@ -56,7 +56,7 @@ const ExperienceCard = ({ experience }) => {
             </ul>
             <div className="flex justify-end sm:flex ">
                 <button onClick={toggleExpand}        
-                    className="flex items-center justify-center w-8 h-8 text-[18px] pb-1 bg-white rounded-full text-black font-bold hover:scale-125 transition-transform"
+                    className="flex items-center justify-center w-8 h-8 text-[18px] pb-[3px] bg-white rounded-full text-black font-bold hover:scale-125 transition-transform"
                 >
                     {isExpanded ? '-' : '+'}
                 </button>
@@ -72,7 +72,7 @@ const Experience = () => {
                 <p className={styles.sectionSubText}>What have I done so far</p>
                 <h2 className={styles.sectionHeadText}>Work Experience.</h2>
             </motion.div>
-            <div className="mt-10 flex flex-col">
+            <div className="mt-6 flex flex-col">
                 <VerticalTimeline>
                     {experiences.map((experience, index) => (
                         <ExperienceCard key={index} experience={experience} />

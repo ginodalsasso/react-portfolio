@@ -1,7 +1,4 @@
 import {
-    mobile,
-    backend,
-    web,
     javascript,
     php,
     html,
@@ -38,29 +35,24 @@ export const navLinks = [
     {
         id: "contact",
         title: "Contact",
-    },    
+    },
 ];
 
 const services = [
     {
         title: "Adaptability",
-        icon: web,
     },
     {
         title: "Autonomy ",
-        icon: mobile,
     },
     {
         title: "Work Ethic",
-        icon: backend,
     },
     {
         title: "Curious",
-        icon: backend,
     },
     {
         title: "Teamwork",
-        icon: backend,
     }
 ];
 

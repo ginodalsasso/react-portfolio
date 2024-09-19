@@ -5,9 +5,7 @@ import { textVariant } from "../utils/motion";
 import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
-import { slideIn } from "../utils/motion";
 import ReCAPTCHA from "react-google-recaptcha"; // Import ReCAPTCHA
-import resume from "../assets/resume.pdf";
 
 // Composant Contact
 const Contact = () => {
@@ -128,7 +126,7 @@ const Contact = () => {
                 <p className={styles.sectionSubText}>Get in touch</p>
                 <h3 className={styles.sectionHeadText}>Contact.</h3>
             </motion.div>
-            <div className="mt-10 overflow-hidden shadow-card_secondary">
+            <div className="mt-6 overflow-hidden shadow-card_secondary">
                 <div className="flex-[0.75] bg-primary p-4 border">
                     <form ref={formRef} onSubmit={handleSubmit} className=" flex flex-col gap-8">
                         <label className="flex flex-col">

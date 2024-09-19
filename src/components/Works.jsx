@@ -5,7 +5,6 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { projects } from "../constants";
 import { Tilt } from "react-tilt";
-import resume from "../assets/resume.pdf";
 
 const ProjectCard = ({
     index,

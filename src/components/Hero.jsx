@@ -9,27 +9,38 @@ const Hero = () => {
     return (
         // Section présentation
         <section className="relative w-full h-95vh mx-auto">
-            <div
-                className="absolute inset-0 top-[40px] sm:top-[40px] max-w-7xl mx-auto flex flex-row items-start gap-5 px-6 z-10" 
-            >
-                <div>
-                    <h1 className={`${styles.heroHeadText} text-white`}>
-                        Hi, I am Gino
-                    </h1>
-                    <p className={`${styles.heroSubText} text-white`}>
-                        I develop web applications{" "}
-                        <br className="sm:block hidden" />
-                        and websites
-                    </p>
-                </div>
+    <div className="flex justify-between items-center">      
+        <div
+            className="absolute inset-0 top-[40px] sm:top-[40px] max-w-7xl mx-auto flex flex-row items-start gap-5 z-10" 
+        >
+            <div>
+                <h1 className={`${styles.heroHeadText} text-white`}>
+                    Hi, I am Gino
+                </h1>
+                <p className={`${styles.heroSubText} text-white`}>
+                    I develop web applications{" "}
+                    <br className="sm:block hidden" />
+                    and websites
+                </p>
+                {/* Lien pour télécharger le CV */}
+                <a
+                    href={resume}
+                    className="relative inline-block mt-4 px-4 py-2 font-bold border-2 border-black bg-white text-black text-[20px] transition-all duration-300 ease-in-out 
+                    hover:text-white hover:border-white hover:shadow-[inset_240px_0_0_0_#0a0a0a]"
+                    download="resume.pdf"
+                >
+                    Download CV
+                </a>
             </div>
+        </div>
+    </div>
 
             {/* Ajoute le canvas */}
             <AbstractShapeCanvas />
 
             <div className="absolute bottom-12 xs:bottom-10 sm:bottom-20 w-full flex justify-center items-center z-20">
             <a href="#about">
-                    <div className="w-[35px] h-[64px] border rounded-full	 bg-primary flex justify-center items-start p-2">
+                    <div className="w-[35px] h-[64px] border rounded-full bg-primary flex justify-center items-start p-2">
                         {/* Ajoute la flèche de défilement */}
                         <motion.div
                             animate={{
