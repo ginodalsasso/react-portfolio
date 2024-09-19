@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
 import 'react-vertical-timeline-component/style.min.css';
 import { styles } from "../styles";
-import { experiences } from "../constants";
+import { LanguageContext } from "./Language";  // Accès au contexte de langue
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
+// Composant pour chaque carte d'expérience
 const ExperienceCard = ({ experience }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -22,7 +23,7 @@ const ExperienceCard = ({ experience }) => {
                 border: '1px solid #e8e8e8',
                 borderRadius: '0', 
                 boxShadow: '0 0 40px rgba(252, 233, 225, 0.08)', 
-                maxHeight: isExpanded ? 'none' : '510px',
+                maxHeight: isExpanded ? 'none' : '640px',
                 display: 'flex',
                 flexDirection: 'column',
                 padding: '30px',
@@ -65,16 +66,19 @@ const ExperienceCard = ({ experience }) => {
     );
 };
 
+// Composant principal Experience
 const Experience = () => {
+    const { constants } = useContext(LanguageContext);  // Accès aux données traduites
+
     return (
         <>
             <motion.div variants={textVariant()}>
-                <p className={styles.sectionSubText}>What have I done so far</p>
-                <h2 className={styles.sectionHeadText}>Work Experience.</h2>
+                <p className={styles.sectionSubText}>{constants.headers[1].title}</p>
+                <h2 className={styles.sectionHeadText}>{constants.headers[1].subtitle}</h2>
             </motion.div>
             <div className="mt-6 flex flex-col">
                 <VerticalTimeline>
-                    {experiences.map((experience, index) => (
+                    {constants.experiences.map((experience, index) => (
                         <ExperienceCard key={index} experience={experience} />
                     ))}
                 </VerticalTimeline>

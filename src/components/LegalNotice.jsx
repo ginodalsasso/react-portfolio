@@ -1,68 +1,69 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LanguageContext } from "./Language";  // Accès au contexte de langue
 
 const LegalNotice = () => {
+    const { language } = useContext(LanguageContext);  // Récupère la langue actuelle
+
     return (
         <div className="container mx-auto p-8">
-            <h1 className="text-3xl font-bold mt-10 mb-6">Legal Notice</h1>
-            <h2 className="text-2xl font-semibold mb-4">Website Publisher</h2>
-            <p className="mb-4">
-                <strong>Website Name:</strong> [Your Website Name] <br />
-                <strong>Publisher:</strong> [Your Name or Entity Name] <br />
-                <strong>Address:</strong> [Your Address or Entity Address]{" "}
-                <br />
-                <strong>Email:</strong> [Your Contact Email] <br />
-                <strong>Phone:</strong> [Your Phone Number, if you wish to
-                provide it]
-            </p>
-            <h2 className="text-2xl font-semibold mb-4">Hosting</h2>
-            <p className="mb-4">
-                <strong>Hosting Provider:</strong> [Your Hosting Provider Name]{" "}
-                <br />
-                <strong>Hosting Provider Address:</strong> [Hosting Provider's
-                Address] <br />
-                <strong>Hosting Provider Phone:</strong> [Hosting Provider's
-                Phone Number]
-            </p>
+            <h1 className="text-3xl font-bold mt-10 mb-6">
+                {language === "en" ? "Legal Notice" : "Mentions Légales"}
+            </h1>
+            
             <h2 className="text-2xl font-semibold mb-4">
-                Intellectual Property
+                {language === "en" ? "Website Publisher" : "Éditeur du site"}
             </h2>
             <p className="mb-4">
-                The content on this website (texts, images, logos, etc.) is the
-                exclusive property of [Your Entity Name or Yourself] unless
-                otherwise stated. Any reproduction, distribution, modification,
-                adaptation, retransmission, or publication, even partial, of
-                these elements is strictly prohibited without our prior written
-                consent.
+                <strong>{language === "en" ? "Website Name:" : "Nom du site:"}</strong> gino-dalsasso <br />
+                <strong>{language === "en" ? "Publisher:" : "Responsable de la publication:"}</strong> Gino Dalsasso <br />
+                <strong>{language === "en" ? "Email:" : "Email :"}</strong> <a href="mailto:dalsasso.gino@gmail.com">dalsasso.gino@gmail.com</a> <br />
             </p>
+
             <h2 className="text-2xl font-semibold mb-4">
-                Limitation of Liability
+                {language === "en" ? "Hosting" : "Hébergement"}
             </h2>
             <p className="mb-4">
-                The information contained on this site is as accurate as
-                possible and the site is periodically updated, but it may
-                contain inaccuracies, omissions, or gaps. If you notice any
-                deficiency, error, or what appears to be a malfunction, please
-                report it to us by email, describing the problem as precisely as
-                possible.
+                <strong>{language === "en" ? "Hosting Provider:" : "Hébergeur :"}</strong> OVH Cloud <br />
+                <strong>{language === "en" ? "Hosting Provider Address:" : "Adresse de l'hébergeur :"}</strong> 2 Rue Kellermann, 59100 Roubaix, France <br />
+                <strong>{language === "en" ? "Hosting Provider Phone:" : "Téléphone de l'hébergeur :"}</strong> +33 9 72 10 10 07
             </p>
-            <h2 className="text-2xl font-semibold mb-4">Hyperlinks</h2>
+
+            <h2 className="text-2xl font-semibold mb-4">
+                {language === "en" ? "Limitation of Liability" : "Limitation de responsabilité"}
+            </h2>
             <p className="mb-4">
-                Our website may contain hyperlinks to other websites. We have no
-                control over the content of these external sites and disclaim
-                any responsibility in this regard.
+                {language === "en" 
+                    ? "The information on this site is as accurate as possible and is periodically updated, but it may contain inaccuracies or omissions. If you notice any errors, please report them by email, describing the issue as precisely as possible."
+                    : "Les informations présentes sur ce site sont aussi précises que possible et sont périodiquement mises à jour, mais elles peuvent contenir des inexactitudes ou des omissions. Si vous constatez une erreur, veuillez nous la signaler par email en décrivant le problème aussi précisément que possible."}
             </p>
-            <h2 className="text-2xl font-semibold mb-4">Governing Law</h2>
+
+            <h2 className="text-2xl font-semibold mb-4">
+                {language === "en" ? "Hyperlinks" : "Liens hypertextes"}
+            </h2>
             <p className="mb-4">
-                This site and its legal notices are subject to [French or other,
-                according to your location] law. In the event of a dispute, and
-                after the failure of any attempt to find an amicable solution,
-                the courts [jurisdiction applicable to your location] will have
-                exclusive jurisdiction to hear the case.
+                {language === "en"
+                    ? "This website may contain hyperlinks to other websites. We do not have control over the content of external sites and disclaim any responsibility for their content."
+                    : "Ce site peut contenir des liens hypertextes vers d'autres sites web. Nous n'avons aucun contrôle sur le contenu de ces sites externes et déclinons toute responsabilité à leur égard."}
             </p>
-            <h2 className="text-2xl font-semibold mb-4">Contact</h2>
+
+            <h2 className="text-2xl font-semibold mb-4">
+                {language === "en" ? "Governing Law" : "Droit applicable"}
+            </h2>
             <p className="mb-4">
-                For any questions related to the legal notices, you can contact
-                us at the following email address: [Your Contact Email].
+                {language === "en"
+                    ? "This site and its legal notices are subject to French law. In the event of a dispute, and after an attempt to reach an amicable resolution, the courts of Strasbourg shall have exclusive jurisdiction."
+                    : "Ce site et ses mentions légales sont soumis au droit français. En cas de litige, et après tentative de résolution à l'amiable, les tribunaux de Strasbourg auront compétence exclusive."
+                }
+            </p>
+
+            <h2 className="text-2xl font-semibold mb-4">
+                {language === "en" ? "Contact" : "Contact"}
+            </h2>
+            <p className="mb-4">
+                {language === "en"
+                    ? "For any questions regarding the legal notices, please contact us at the following email address: "
+                    : "Pour toute question concernant les mentions légales, vous pouvez nous contacter à l'adresse email suivante : "}
+                <a href="mailto:dalsasso.gino@gmail.com">dalsasso.gino@gmail.com</a>
             </p>
         </div>
     );

@@ -13,29 +13,36 @@ import {
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import LegalNotice from "./components/LegalNotice"; 
 import Footer from "./components/Footer";
+import { LanguageProvider } from "./components/Language"; 
 
 const App = () => {
     return (
         <BrowserRouter>
-            <div className="relative z-0 border-x">
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={
-                        <>
-                            <StarsCanvas />
-                            <Hero />
-                            <About />
-                            <Experience />
-                            <Works />
-                            <Tech />
-                            <Contact />
-                        </>
-                    } />
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                    <Route path="/legal-notice" element={<LegalNotice />} />
-                </Routes>
-                <Footer />
-            </div>
+            {/* Encapsule toute l'application dans LanguageProvider */}
+            <LanguageProvider>
+                <div className="relative z-0 border-x">
+                    <Navbar />  {/* Navbar peut accéder au contexte */}
+                    <Routes>
+                        <Route 
+                            path="/" 
+                            element={
+                                <>
+                                    <StarsCanvas />
+                                    <Hero />
+                                    <About />  {/* About peut accéder au contexte */}
+                                    <Experience />
+                                    <Works />
+                                    <Tech />
+                                    <Contact />
+                                </>
+                            } 
+                        />
+                        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                        <Route path="/legal-notice" element={<LegalNotice />} />
+                    </Routes>
+                    <Footer />
+                </div>
+            </LanguageProvider>
         </BrowserRouter>
     );
 };

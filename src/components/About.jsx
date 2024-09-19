@@ -1,18 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
-
+import { LanguageContext } from "./Language";
 import { styles } from "../styles";
-import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
-
 
 // Carte des services
 const ServiceCard = ({ index, title }) => {
     return (
-        // Ajoute un effet de basculement à la carte
         <div className="xs:w-[190px] w-full">
-            {/* // Ajoute un effet de fondu à la carte */}
             <motion.div
                 variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
                 className="w-full  shadow-card"
@@ -28,31 +24,26 @@ const ServiceCard = ({ index, title }) => {
 };
 
 const About = () => {
+    const { language, constants } = useContext(LanguageContext);  // Accès au contexte
+
     return (
         <>
             {/* Section présentation */}
             <motion.div variants={textVariant()}>
-                <p className={styles.sectionSubText}>Introduction</p>
-                <h2 className={styles.sectionHeadText}>Overview.</h2>
+                <p className={styles.sectionSubText}>{constants.headers[0].title}</p>
+                <h2 className={styles.sectionHeadText}>{constants.headers[0].subtitle}</h2>
             </motion.div>
+
             <motion.p
                 variants={fadeIn("", "", 0.1, 1)}
-                className="mt-4 text-secondary text-[20px] max-w-3xl leading-[30px] "
-                >
-                Passionate about crafting digital solutions. Currently
-                undergoing training to become a proficient developer, I'm
-                dedicated to acquiring new skills and taking on stimulating
-                challenges. <br />
-                Here is a list of the soft skills I have acquired along my
-                journey :
+                className="mt-4 text-secondary text-[20px] max-w-3xl leading-[30px]"
+            >
+                {constants.headers[0].description}
             </motion.p>
+
             <div className="mt-10 flex flex-wrap justify-center gap-10">
-                {services.map((service, index) => (
-                    <ServiceCard
-                        key={service.title}
-                        index={index}
-                        {...service}
-                    />
+                {constants.services.map((service, index) => (
+                    <ServiceCard key={service.title} index={index} {...service} />
                 ))}
             </div>
         </>

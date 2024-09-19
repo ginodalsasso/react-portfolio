@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";  // Ajout de useContext
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "./Language";  // Accès au contexte de langue
 
 const Footer = () => {
+    const { constants, language } = useContext(LanguageContext);  // Récupère la langue actuelle
+
     return (
         <footer
             className={`
@@ -18,16 +21,18 @@ const Footer = () => {
                         to="/privacy-policy"
                         className="text-secondary underline mt-2"
                         >
-                        Privacy Policy
+                        {language === "en" ? "Privacy policy" : "Politique de confidentialité"}
                     </Link>
                     <Link
                         to="/legal-notice"
                         className="text-secondary underline mt-2"
                         >
-                        Legal Notice
+                        {language === "en" ? "Legal notice" : "Mentions légales"}
+
                     </Link>
                 </div>
-                <p>&copy; 2024 Gino's Portfolio. All rights reserved.</p>
+                <p>&copy; {language === "en" ? "2024 Gino's Portfolio. All rights reserved." : "2024 Portfolio de Gino. Tous droits réservés."}
+                </p>
             </div>
         </footer>
     );

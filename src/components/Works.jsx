@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
-import { projects } from "../constants";
 import { Tilt } from "react-tilt";
+import { LanguageContext } from "./Language";  // Accès au contexte de langue
 
 const ProjectCard = ({
     index,
@@ -16,7 +17,7 @@ const ProjectCard = ({
 }) => {
     return (
         <motion.div
-            variants={fadeIn("up", "spring", index * 0.1, 0.75)} // 
+            variants={fadeIn("up", "spring", index * 0.1, 0.75)} 
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
@@ -71,6 +72,13 @@ const ProjectCard = ({
 };
 
 const Works = () => {
+    const { constants } = useContext(LanguageContext);  // Accès aux données traduites
+
+    // Vérifie si les données sont bien chargées
+    if (!constants) {
+        return <div>Loading...</div>;  // Ajoute un message de chargement ou d'erreur
+    }
+
     return (
         <section id="projects" className="relative z-0">
             <motion.div
@@ -79,8 +87,8 @@ const Works = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.25 }}
             >
-                <p className={styles.sectionSubText}>My work</p>
-                <h2 className={styles.sectionHeadText}>Projects.</h2>
+                <p className={styles.sectionSubText}>{constants.headers[2].title}</p>
+                <h2 className={styles.sectionHeadText}>{constants.headers[2].subtitle}</h2>
             </motion.div>
 
             <motion.div
@@ -91,16 +99,12 @@ const Works = () => {
                 className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
             >
                 <p className="mt-4 text-secondary text-[20px] max-w-3xl leading-[30px]">
-                    From shaping wood into masterpieces with chisels and
-                    hammers to crafting digital wonders with code, I
-                    transitioned from a skilled carpenter to a passionate
-                    developer, seamlessly blending the artistry of both
-                    worlds. And now, here are my projects so far.
+                    {constants.headers[2].description}
                 </p>
             </motion.div>
 
             <div className="mt-10 flex flex-wrap justify-center gap-7">
-                {projects.map((project, index) => (
+                {constants.projects.map((project, index) => (
                     <ProjectCard
                         key={`project-${index}`}
                         index={index}

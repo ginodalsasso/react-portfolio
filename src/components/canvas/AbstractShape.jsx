@@ -10,7 +10,7 @@ const AbstractShape = React.memo(({ isMobile, controlsRef }) => {
     const objectRef = useRef();
 
     const scaleValue = useMemo(() => isMobile ? 1.3 : 2.8, [isMobile]);
-    const positionValue = useMemo(() => isMobile ? [0, 0, 0] : [0, 0, 0], [isMobile]);
+    const positionValue = useMemo(() => isMobile ? [0, -1, 0] : [0, 0, 0], [isMobile]);
 
     return (
         <mesh ref={objectRef}>
