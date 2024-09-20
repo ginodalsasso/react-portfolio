@@ -39,10 +39,10 @@ const ProjectCard = ({
                         <img
                             src={image}
                             alt={name}
-                            className="w-full h-full object-cover grayscale-[50%]"
+                            className="w-full h-full object-cover overflow-hidden grayscale-[50%] transition duration-500 ease-in-out transform hover:grayscale-0 hover:scale-105"
                         />
                     </div>
-                    <div className="black-gradient w-10 h-10 rounded-full flex justify-center items-center absolute top-[-10px] right-[-10px]">
+                    <div className="black-gradient w-10 h-10 rounded-full flex justify-center items-center absolute top-[-12px] right-[-12px]">
                         <img
                             src={github}
                             alt="github"

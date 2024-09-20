@@ -44,6 +44,7 @@ const Navbar = () => {
                             className={`${
                                 active === link.title ? "text-white" : "text-secondary"
                             } hover:text-black hover:bg-secondary text-[20px] font-medium cursor-pointer py-2 px-4 my-1 transition-all`}
+                            aria-label="Navigation links"
                             onClick={() => setActive(link.title)}
                         >
                             <a href={`#${link.id}`}>{link.title}</a>
@@ -54,6 +55,7 @@ const Navbar = () => {
                         <button
                             onClick={toggleLanguage}
                             className="text-white border py-1 px-4 ml-8 text-[12px] font-bold hover:bg-secondary hover:text-black transition-all"
+                            aria-label="Change language"
                             >
                             {language === "en" ? "EN" : "FR"}
                         </button>
@@ -93,6 +95,7 @@ const Navbar = () => {
                             <button
                                 onClick={toggleLanguage}
                                 className="text-white border mr-2 py-1 px-4 text-[12px]  font-bold hover:bg-secondary hover:text-black  transition-all"
+                                aria-label="Change language"
                                 >
                                 {language === "en" ? "EN" : "FR"}
                             </button>

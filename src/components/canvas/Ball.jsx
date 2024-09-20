@@ -28,7 +28,7 @@ const Cube = ({ imgUrl }) => {
 
 const CubeCanvas = ({ icon }) => {
     return (
-        <Canvas className="cursor-grab" frameloop="demand" gl={{ preserveDrawingBuffer: true }}>
+        <Canvas className="cursor-grab" frameloop="demand" gl={{ preserveDrawingBuffer: true }} aria-label="Used Technologies">
             <Suspense fallback={<CanvasLoader />}>
                 <OrbitControls enableZoom={false} autoRotate />
                 <ambientLight intensity={1} />

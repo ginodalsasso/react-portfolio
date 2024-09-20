@@ -10,12 +10,13 @@ const ServiceCard = ({ index, title }) => {
     return (
         <div className="xs:w-[190px] w-full">
             <motion.div
-                variants={fadeIn("right", "spring", 0.75 * index, 0.5)}
-                className="w-full  shadow-card"
+            variants={fadeIn("up", "spring", index * 0.6, 0.75)} 
+            // viewport={{ once: true, amount: 0.25 }}
+            className="w-full shadow-card"
             >
                 <div className="bg-primary border py-5 px-2 min-h-[90px] flex justify-evenly items-center flex-col">
                     <h3 className="text-white text-[20px] font-bold text-center">
-                        {title}
+                        {title} 
                     </h3>
                 </div>
             </motion.div>
@@ -23,8 +24,9 @@ const ServiceCard = ({ index, title }) => {
     );
 };
 
+
 const About = () => {
-    const { language, constants } = useContext(LanguageContext);  // Accès au contexte
+    const { constants } = useContext(LanguageContext);  // Accès au contexte
 
     return (
         <>

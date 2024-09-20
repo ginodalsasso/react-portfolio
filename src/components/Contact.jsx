@@ -151,7 +151,7 @@ const Contact = () => {
                                 name="email"
                                 value={form.email}
                                 onChange={handleChange}
-                                placeholder={language === "en" ? "What is your email address ?" : "Quel est votre email ?"}
+                                placeholder={language === "en" ? "What is your email address ?" : "Quelle est votre email ?"}
                                 className="bg-tertiary py-4 px-6 text-white font-medium"
                             />
                             {errors.email && (
@@ -207,6 +207,7 @@ const Contact = () => {
                         <button
                             type="submit"
                             className="bg-primary py-3 px-8 outline-none w-fit text-white font-bold shadow-md border shadow-primary hover:text-primary hover:bg-white"
+                            aria-label="Send message"
                         >
                             {/* Texte du bouton dépendant de la langue */}
                             {loading 

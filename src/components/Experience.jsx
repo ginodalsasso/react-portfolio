@@ -58,6 +58,7 @@ const ExperienceCard = ({ experience }) => {
             <div className="flex justify-end sm:flex ">
                 <button onClick={toggleExpand}        
                     className="flex items-center justify-center w-8 h-8 mt-4 text-[18px] pb-[3px] bg-white rounded-full text-black font-bold hover:scale-125 transition-transform"
+                    aria-label="Expand experience"
                 >
                     {isExpanded ? '-' : '+'}
                 </button>
