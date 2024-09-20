@@ -8,7 +8,7 @@ const Cube = ({ imgUrl }) => {
     const scale = [0.8, 0.8, 0.8]; // Définit l'échelle des décalcomanies
 
     return (
-        <mesh castShadow receiveShadow scale={[3, 3, 3]} >
+        <mesh  scale={[3, 3, 3]} >
             <boxGeometry args={[1, 1, 1]} /> {/* // Ajoute une géométrie de cube */}            
             {/* // Ajoute des décalcomanies sur chaque faces du cube */}
             <Decal position={[0, 0, 0.5]} rotation={[0, 0, 0]} scale={scale} map={texture} /> 
@@ -30,7 +30,7 @@ const CubeCanvas = ({ icon }) => {
     return (
         <Canvas className="cursor-grab" frameloop="demand" gl={{ preserveDrawingBuffer: true }}>
             <Suspense fallback={<CanvasLoader />}>
-                <OrbitControls enableZoom={false} enableDamping={true} autoRotate /> {/* Active l'amortissement pour les contrôles d'orbite */}
+                <OrbitControls enableZoom={false} autoRotate />
                 <ambientLight intensity={1} /> 
                 <directionalLight position={[0, 1, 0.5]} intensity={0.4} /> 
                 <Cube imgUrl={icon} />

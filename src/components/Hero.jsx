@@ -19,7 +19,6 @@ const Hero = () => {
                 >
                     <div>
                         <h1 className={`${styles.heroHeadText} text-white`}>
-                            {/* {language === "en" ? "Hi, I am Gino" : "Hello, moi c'est Gino"} */}
                             {language === "en" ? "Hi !" : "Hello !"}
                             <br />
                             {language === "en" ? "I am Gino." : " Moi c'est Gino."}
@@ -36,7 +35,7 @@ const Hero = () => {
                         {/* Lien pour télécharger le CV */}
                         <a
                             href={resume}
-                            className="relative inline-block mt-4 px-4 py-2 font-bold border-2 border-black bg-white text-black text-[20px] transition-all duration-300 ease-in-out 
+                            className="relative inline-block mt-6 lg:mt-8 px-4 py-2 font-bold border-2 border-black bg-white text-black text-[20px] transition-all duration-300 ease-in-out 
                             hover:text-white hover:border-white hover:shadow-[inset_240px_0_0_0_#0a0a0a]"
                             download="resume.pdf"
                         >

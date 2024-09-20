@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 import CanvasLoader from "../Loader";
 
@@ -16,15 +15,9 @@ const AbstractShape = React.memo(({ isMobile, controlsRef }) => {
         <mesh ref={objectRef}>
             <directionalLight
                 position={[1, 10, 5]}
-                intensity={isMobile ? 6 : 8}
+                intensity={isMobile ? 10 : 12}
             />
-            <ambientLight intensity={isMobile ? 0.5 : 0.7} color="#ffffff" />
 
-            <directionalLight
-                position={[-5, -5, -5]}
-                intensity={isMobile ? 4 : 6}
-                color="#404040"
-            />
             {/* Ajouter l'objet à la scène */}
             <primitive
                 object={scene}
@@ -74,13 +67,12 @@ const AbstractShapeCanvas = () => {
         }
     }, []); // Le tableau vide [] signifie que cet effet ne s'exécutera qu'une seule fois après le premier rendu du composant
 
+    // Utilise `useMemo` pour mémoriser les contrôles de l'orbite
     const memoizedOrbitControls = useMemo(() => (
         <OrbitControls
             autoRotate
             ref={controlsRef}
             enableZoom={false}
-            // maxPolarAngle={Math.PI / 2}
-            // minPolarAngle={Math.PI / 2}
         />
     ), []);
 
@@ -96,9 +88,6 @@ const AbstractShapeCanvas = () => {
                 {memoizedOrbitControls}
                 {/* Passez controlsRef à AbstractShape pour centrer la caméra sur l'objet */}
                 <AbstractShape isMobile={isMobile} controlsRef={controlsRef} />
-                <EffectComposer>
-                    <Bloom luminanceSmoothing={0.9} height={300} />
-                </EffectComposer>
             </Suspense>
             <Preload all />
         </Canvas>

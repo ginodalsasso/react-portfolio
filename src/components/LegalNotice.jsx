@@ -5,7 +5,7 @@ const LegalNotice = () => {
     const { language } = useContext(LanguageContext);  // Récupère la langue actuelle
 
     return (
-        <div className="container mx-auto p-8">
+        <div className="container h-full mx-auto p-8">
             <h1 className="text-3xl font-bold mt-10 mb-6">
                 {language === "en" ? "Legal Notice" : "Mentions Légales"}
             </h1>

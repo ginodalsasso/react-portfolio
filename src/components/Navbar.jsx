@@ -17,18 +17,10 @@ const Navbar = () => {
         <nav
             className={`${
                 styles.paddingX
-            } w-full flex items-center fixed top-0 z-20 bg-primary border border-secondary h-[70px]`}
+            } w-full flex items-center fixed top-0 bg-primary border h-[70px] z-20`}
         >
             <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
                 <div className="flex">
-
-                {/* Ajout du bouton de changement de langue */}
-                <button
-                    onClick={toggleLanguage}
-                    className="text-white border mr-2 py-1 px-4 text-[12px] transition-all"
-                    >
-                    {language === "en" ? "FR" : "EN"}
-                </button>
                 <Link
                     to="/"
                     className="flex items-center gap-2"
@@ -51,12 +43,21 @@ const Navbar = () => {
                             key={link.id}
                             className={`${
                                 active === link.title ? "text-white" : "text-secondary"
-                            } hover:text-black hover:bg-secondary text-[20px] font-medium cursor-pointer py-2 px-4 my-1 transition-all duration-300`}
+                            } hover:text-black hover:bg-secondary text-[20px] font-medium cursor-pointer py-2 px-4 my-1 transition-all`}
                             onClick={() => setActive(link.title)}
                         >
                             <a href={`#${link.id}`}>{link.title}</a>
                         </li>
                     ))}
+                    <li>
+                        {/* Ajout du bouton de changement de langue */}
+                        <button
+                            onClick={toggleLanguage}
+                            className="text-white border py-1 px-4 ml-8 text-[12px] font-bold hover:bg-secondary hover:text-black transition-all"
+                            >
+                            {language === "en" ? "EN" : "FR"}
+                        </button>
+                    </li>
                 </ul>
 
                 <div className="lg:hidden flex flex-1 justify-end items-center">
@@ -88,6 +89,13 @@ const Navbar = () => {
                                     <a href={`#${link.id}`}>{link.title}</a>
                                 </li>
                             ))}
+                            {/* Ajout du bouton de changement de langue */}
+                            <button
+                                onClick={toggleLanguage}
+                                className="text-white border mr-2 py-1 px-4 text-[12px]  font-bold hover:bg-secondary hover:text-black  transition-all"
+                                >
+                                {language === "en" ? "EN" : "FR"}
+                            </button>
                         </ul>
                     </div>
                 </div>

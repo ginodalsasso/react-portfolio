@@ -20,8 +20,8 @@ const App = () => {
         <BrowserRouter>
             {/* Encapsule toute l'application dans LanguageProvider */}
             <LanguageProvider>
-                <div className="relative z-0 border-x">
                     <Navbar />  {/* Navbar peut accéder au contexte */}
+                <div className="relative border">
                     <Routes>
                         <Route 
                             path="/" 

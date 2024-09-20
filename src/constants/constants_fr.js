@@ -40,8 +40,8 @@ export const navLinks = [
 
 const headers = [
     {
-        title: "Introduction",
-        subtitle: "À propos.",
+        title: "Qui suis-je ?",
+        subtitle: "Introduction.",
         description: "Passionné par la création de solutions numériques. Actuellement en formation pour devenir un développeur compétent, je suis déterminé à acquérir de nouvelles compétences et à relever des défis stimulants. Voici une liste des compétences relationnelles que j'ai acquises au cours de mon parcours :"
     },
     {

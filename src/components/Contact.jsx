@@ -115,10 +115,10 @@ const Contact = () => {
         <div>
             <motion.div variants={textVariant()}>
                 <p className={styles.sectionSubText}>
-                    {language === "en" ? "Contact me" : "Contactez-moi"}
+                    {constants.headers[3].title}
                 </p>
                 <h3 className={styles.sectionHeadText}>
-                    {language === "en" ? "Get in touch" : "Prenez contact"}
+                    {constants.headers[3].subtitle}
                 </h3>
             </motion.div>
             <div className="mt-6 overflow-hidden shadow-card_secondary">
