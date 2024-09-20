@@ -122,10 +122,10 @@ const Contact = () => {
                 </h3>
             </motion.div>
             <div className="mt-6 overflow-hidden shadow-card_secondary">
-                <div className="flex-[0.75] bg-primary p-4 border">
+                <div className="flex-[0.75] bg-primary p-4 lg:p-8 border">
                     <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8">
                         <label className="flex flex-col">
-                            <span className="text-white font-medium mb-4">
+                            <span className="text-white font-medium mb-3">
                                 {language === "en" ? "Name" : "Nom"}                            
                             </span>
                             <input
@@ -143,7 +143,7 @@ const Contact = () => {
                             )}
                         </label>
                         <label className="flex flex-col">
-                            <span className="text-white font-medium mb-4">
+                            <span className="text-white font-medium mb-3">
                                 {language === "en" ? "Email address" : "Adresse email"}                            
                             </span>
                             <input
@@ -161,7 +161,7 @@ const Contact = () => {
                             )}
                         </label>
                         <label className="flex flex-col">
-                            <span className="text-white font-medium mb-4">
+                            <span className="text-white font-medium mb-3">
                                 {language === "en" ? "Message" : "Message"}                            
                             </span>
                             <textarea

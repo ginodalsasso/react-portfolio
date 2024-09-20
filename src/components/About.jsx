@@ -10,7 +10,7 @@ const ServiceCard = ({ index, title }) => {
     return (
         <div className="xs:w-[190px] w-full">
             <motion.div
-                variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
+                variants={fadeIn("right", "spring", 0.75 * index, 0.5)}
                 className="w-full  shadow-card"
             >
                 <div className="bg-primary border py-5 px-2 min-h-[90px] flex justify-evenly items-center flex-col">

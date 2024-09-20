@@ -14,8 +14,10 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import LegalNotice from "./components/LegalNotice"; 
 import Footer from "./components/Footer";
 import { LanguageProvider } from "./components/Language"; 
+import useIsMobile from "./components/hooks/useIsMobile";
 
 const App = () => {
+    const isMobile = useIsMobile(700); 
     return (
         <BrowserRouter>
             {/* Encapsule toute l'application dans LanguageProvider */}
@@ -32,7 +34,7 @@ const App = () => {
                                     <About />  {/* About peut accéder au contexte */}
                                     <Experience />
                                     <Works />
-                                    <Tech />
+                                    {!isMobile && <Tech />}  {/* Rendre Tech uniquement sur desktop */}
                                     <Contact />
                                 </>
                             } 
