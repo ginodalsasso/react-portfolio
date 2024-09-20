@@ -63,7 +63,6 @@ const Hero = () => {
                                 repeatType: "loop",
                             }}
                             className="w-3 h-3 rounded-full bg-secondary"
-                            aria-label="Scroll down"
                         />
                     </div>
                 </a>

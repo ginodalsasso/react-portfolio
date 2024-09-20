@@ -135,6 +135,7 @@ const Contact = () => {
                                 onChange={handleChange}
                                 placeholder={language === "en" ? "What is your name ?" : "Quel est votre nom ?"}
                                 className="bg-tertiary py-4 px-6 text-white font-medium"
+                                autoComplete="on"
                             />
                             {errors.name && (
                                 <span className="text-red-500 mt-2">
@@ -153,6 +154,7 @@ const Contact = () => {
                                 onChange={handleChange}
                                 placeholder={language === "en" ? "What is your email address ?" : "Quelle est votre email ?"}
                                 className="bg-tertiary py-4 px-6 text-white font-medium"
+                                autoComplete="email"
                             />
                             {errors.email && (
                                 <span className="text-red-500 mt-2">

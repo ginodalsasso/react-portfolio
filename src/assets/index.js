@@ -16,11 +16,11 @@ import tailwind from "./tech/tailwind.png";
 import php from "./tech/php.png";
 import mysql from "./tech/mysql.png";
 
-import tuttopasta from "./tuttopasta.png";
-import session from "./session.png";
-import forum from "./forum.png";
-import iller from "./iller.png";
-import wikifilm from "./wikifilm.png";
+import tuttopasta from "./tuttopasta.webp";
+import session from "./session.webp";
+import forum from "./forum.webp";
+import iller from "./iller.webp";
+import wikifilm from "./wikifilm.webp";
 
 import resume from "./resume.pdf";
 
